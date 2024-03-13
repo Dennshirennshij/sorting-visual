@@ -1,7 +1,6 @@
 package github.dennshirennshij.nodedev74.sorting_visual.sorting;
 
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public class VisualList extends ArrayList<Integer> {
 
