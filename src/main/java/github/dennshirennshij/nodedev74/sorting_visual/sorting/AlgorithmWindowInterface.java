@@ -9,5 +9,6 @@ public interface AlgorithmWindowInterface {
     public void set (int listIndex, int index, int value);
     public int get (int listIndex, int index);
     public void addVisualList (VisualList visualList);
+    public boolean isPaused ();
 
 }

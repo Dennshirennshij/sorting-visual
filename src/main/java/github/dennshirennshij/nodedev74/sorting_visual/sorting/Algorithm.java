@@ -15,6 +15,7 @@ public abstract class Algorithm {
     }
 
     protected int addVisualList () {
+        while (window.isPaused());
         VisualList visualList = new VisualList();
         window.addVisualList(visualList);
         this.visualLists.add(visualList);
@@ -24,16 +25,19 @@ public abstract class Algorithm {
     // todo: add visualList.length equivalent
 
     protected void trade (int listIndex, int i1, int i2) {
+        while (window.isPaused());
         window.trade(listIndex, i1, i2);
         this.visualLists.get(listIndex).trade(i1, i2);
     }
 
     protected void set (int listIndex, int index, int value) {
+        while (window.isPaused());
         window.set(listIndex, index, value);
         this.visualLists.get(listIndex).set(index, value);
     }
 
     protected int get (int listIndex, int index) {
+        while (window.isPaused());
         window.get(listIndex, index);
         return this.visualLists.get(listIndex).get(index);
     }
