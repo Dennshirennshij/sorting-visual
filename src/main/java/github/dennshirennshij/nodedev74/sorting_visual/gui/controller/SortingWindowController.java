@@ -14,6 +14,9 @@ public class SortingWindowController {
     private Label SwapCounter;
 
     @FXML
+    private Label AlgorithmName;
+
+    @FXML
     private Label Timer;
 
     @FXML

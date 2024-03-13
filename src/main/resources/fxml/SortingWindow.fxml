@@ -20,6 +20,8 @@
             <Label fx:id="SwapCounter" text="0" />
             <Label fx:id="Timer" text="0" />
             <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
+            <Label fx:id="AlgorithmName" text="null" />
+            <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
             <Button fx:id="SyncButton" onAction="#SyncButtonAction" text="Sync" />
         </ToolBar>
     </top>
