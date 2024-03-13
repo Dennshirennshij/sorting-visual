@@ -1,10 +1,15 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
+import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingWindow;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class SortingWindowController {
+
+    // Root: SortingWindow
+    @FXML
+    private SortingWindow SortingWindow;
 
     /* Top Controls */
     @FXML
