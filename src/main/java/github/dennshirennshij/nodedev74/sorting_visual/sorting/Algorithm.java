@@ -7,7 +7,7 @@ public abstract class Algorithm {
 
     private ArrayList<VisualList> visualLists;
 
-    public abstract void start (int[] elements);
+    public abstract int[] start (int[] elements);
 
     public abstract String getName ();
 
@@ -19,6 +19,19 @@ public abstract class Algorithm {
     protected int addVisualList () {
         while (window.isPaused());
         VisualList visualList = new VisualList();
+        window.addVisualList(visualList);
+        this.visualLists.add(visualList);
+        return this.visualLists.size() - 1;
+    }
+
+    protected void removeVisualList (int listIndex) {
+        while (window.isPaused());
+        window.removeVisualList(listIndex);
+        this.visualLists.remove(listIndex);
+    }
+    protected int addVisualList (int[] elements) {
+        while (window.isPaused());
+        VisualList visualList = new VisualList(elements);
         window.addVisualList(visualList);
         this.visualLists.add(visualList);
         return this.visualLists.size() - 1;
@@ -46,6 +59,12 @@ public abstract class Algorithm {
         while (window.isPaused());
         window.get(listIndex, index);
         return this.visualLists.get(listIndex).get(index);
+    }
+
+    protected int[] getArray (int listIndex) {
+        while (window.isPaused());
+        window.getArray(listIndex);
+        return this.visualLists.get(listIndex).toIntArray();
     }
 
     // todo: add split operation?

@@ -12,4 +12,8 @@ public interface AlgorithmWindowInterface {
     public boolean isPaused ();
     public void getLength (int listIndex);
 
+    public void removeVisualList (int listIndex);
+
+    public void getArray (int listIndex);
+
 }
