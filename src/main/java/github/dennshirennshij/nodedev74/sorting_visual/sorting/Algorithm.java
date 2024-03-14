@@ -9,6 +9,8 @@ public abstract class Algorithm {
 
     public abstract void start(int[] elements);
 
+    public abstract String getName ();
+
     public Algorithm (AlgorithmWindowInterface window) {
         this.window = window;
         this.visualLists = new ArrayList<VisualList>();
