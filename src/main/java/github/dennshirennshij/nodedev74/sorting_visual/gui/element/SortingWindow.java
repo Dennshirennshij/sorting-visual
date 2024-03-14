@@ -1,12 +1,16 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.element;
 
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
+import github.dennshirennshij.nodedev74.sorting_visual.sorting.AlgorithmWindowInterface;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
 
 public class SortingWindow extends BorderPane {
+
+    private Algorithm algorithm;
 
     public enum WindowState
     {
@@ -29,10 +33,10 @@ public class SortingWindow extends BorderPane {
             System.out.println("Couldnt load fxml");
         }
     }
-    public SortingWindow(Algorithm algorithm) {
+    public SortingWindow(Class<? extends Algorithm> algorithm) {
         this();
 
-        // todo: impl initial logic
+        this.algorithm = algorithm.getConstructor(Class<AlgorithmWindowInterface> param1).newInstance(this);
     }
 
     public WindowState getCurrentWindowState() {
@@ -41,5 +45,15 @@ public class SortingWindow extends BorderPane {
 
     public void setCurrentWindowState(WindowState newState) {
         currentWindowState = newState;
+    }
+
+    public void start() {
+        this.currentWindowState = WindowState.RUNNING;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
     }
 }
