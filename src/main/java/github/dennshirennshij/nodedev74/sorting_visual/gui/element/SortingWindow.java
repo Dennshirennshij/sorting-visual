@@ -2,13 +2,49 @@ package github.dennshirennshij.nodedev74.sorting_visual.gui.element;
 
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.AlgorithmWindowInterface;
+
 import javafx.application.Platform;
+
+import github.dennshirennshij.nodedev74.sorting_visual.sorting.VisualList;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
 
 public class SortingWindow extends BorderPane {
+
+    public void trade(int listIndex, int i1, int i2) {
+        System.out.println("Trade " + i1 + " with " + i2 + " in list " + listIndex);
+    }
+
+    public void set(int listIndex, int index, int value) {
+        System.out.println("Set " + value + " at " + index + " in list " + listIndex);
+    }
+
+    public void get(int listIndex, int index) {
+        System.out.println("Get " + index + " in list " + listIndex);
+    }
+
+    public void addVisualList(VisualList visualList) {
+        System.out.println("Add visual list");
+    }
+
+    public boolean isPaused() {
+        return false;
+    }
+
+    public void getLength(int listIndex) {
+        System.out.println("Get length of list " + listIndex);
+    }
+
+    public void removeVisualList(int listIndex) {
+        System.out.println("Remove visual list " + listIndex);
+    }
+
+    public void getArray(int listIndex) {
+        System.out.println("Get array of list " + listIndex);
+    }
 
     private Algorithm algorithm;
 
@@ -36,7 +72,12 @@ public class SortingWindow extends BorderPane {
     public SortingWindow(Class<? extends Algorithm> algorithm) {
         this();
 
-        this.algorithm = algorithm.getConstructor(Class<AlgorithmWindowInterface> param1).newInstance(this);
+        try {
+            this.algorithm = algorithm.getDeclaredConstructor(AlgorithmWindowInterface.class).newInstance(this);
+        } catch (Exception e) {
+            System.out.println("Couldnt load algorithm");
+        }
+        // todo: impl initial logic
     }
 
     public WindowState getCurrentWindowState() {

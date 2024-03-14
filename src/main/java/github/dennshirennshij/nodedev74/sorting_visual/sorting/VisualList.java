@@ -42,4 +42,12 @@ public class VisualList extends ArrayList<Integer> {
         }
     }
 
+    public int[] toIntArray () {
+        int[] array = new int[this.size()];
+        for (int i = 0; i < this.size(); i++) {
+            array[i] = this.internalGet(i);
+        }
+        return array;
+    }
+
 }

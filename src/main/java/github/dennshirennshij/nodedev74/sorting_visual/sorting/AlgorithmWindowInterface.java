@@ -7,9 +7,13 @@ public interface AlgorithmWindowInterface {
 
     public void trade (int listIndex, int i1, int i2);
     public void set (int listIndex, int index, int value);
-    public int get (int listIndex, int index);
+    public void get (int listIndex, int index);
     public void addVisualList (VisualList visualList);
     public boolean isPaused ();
     public void getLength (int listIndex);
+
+    public void removeVisualList (int listIndex);
+
+    public void getArray (int listIndex);
 
 }

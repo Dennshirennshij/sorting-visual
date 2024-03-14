@@ -5,8 +5,12 @@ import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PluginLoader {
+
+    private HashMap<String, Class<? extends Algorithm>> loadedClasses = new HashMap<>();
+
     public static void load() {
         // Ordnerpfad zu den JAR-Dateien
         String pluginsFolderPath = "plugins/";
