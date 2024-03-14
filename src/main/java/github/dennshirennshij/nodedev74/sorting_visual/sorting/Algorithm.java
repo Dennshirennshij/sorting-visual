@@ -22,7 +22,11 @@ public abstract class Algorithm {
         return this.visualLists.size() - 1;
     }
 
-    // todo: add visualList.length equivalent
+    protected int getLength (int listIndex) {
+        while (window.isPaused());
+        window.getLength(listIndex);
+        return this.visualLists.get(listIndex).size();
+    }
 
     protected void trade (int listIndex, int i1, int i2) {
         while (window.isPaused());

@@ -10,5 +10,6 @@ public interface AlgorithmWindowInterface {
     public int get (int listIndex, int index);
     public void addVisualList (VisualList visualList);
     public boolean isPaused ();
+    public void getLength (int listIndex);
 
 }
