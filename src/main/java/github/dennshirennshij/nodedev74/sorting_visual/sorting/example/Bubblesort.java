@@ -1,7 +1,6 @@
 package github.dennshirennshij.nodedev74.sorting_visual.sorting.example;
 
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
-import github.dennshirennshij.nodedev74.sorting_visual.sorting.AlgorithmWindowInterface;
 
 public class Bubblesort extends Algorithm {
     public Bubblesort(AlgorithmWindowInterface window) {

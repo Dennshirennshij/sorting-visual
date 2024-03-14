@@ -1,9 +1,11 @@
 package github.dennshirennshij.nodedev74.sorting_visual.sorting;
 
+import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingWindow;
+
 import java.util.ArrayList;
 
 public abstract class Algorithm {
-    private AlgorithmWindowInterface window;
+    private final SortingWindow window;
 
     private ArrayList<VisualList> visualLists;
 
@@ -11,7 +13,7 @@ public abstract class Algorithm {
 
     public abstract String getName ();
 
-    public Algorithm (AlgorithmWindowInterface window) {
+    public Algorithm (SortingWindow window) {
         this.window = window;
         this.visualLists = new ArrayList<VisualList>();
     }
