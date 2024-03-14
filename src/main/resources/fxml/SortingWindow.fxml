@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingDisplay?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ToolBar?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<fx:root type="github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingWindow"
+         maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+         prefHeight="400.0" prefWidth="600.0"
+         fx:id="SortingWindow"
+         fx:controller="github.dennshirennshij.nodedev74.sorting_visual.gui.controller.SortingWindowController"
+         xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <ToolBar>
+            <Label fx:id="CheckoutCounter" text="0"/>
+            <Label fx:id="SwapCounter" text="0" />
+            <Label fx:id="Timer" text="0" />
+            <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
+            <Label fx:id="AlgorithmName" text="null" />
+            <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
+            <Button fx:id="SyncButton" onAction="#SyncButtonAction" text="Sync" />
+        </ToolBar>
+    </top>
+    <center>
+        <SortingDisplay />
+    </center>
+    <bottom>
+        <ToolBar>
+            <Button fx:id="StartButton" onAction="#StartButtonAction" text="Start" />
+            <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
+            <Button fx:id="PauseButton" onAction="#PauseButtonAction" text="Pause" />
+            <Button fx:id="StopButton" onAction="#StopButtonAction" text="Stop" />
+        </ToolBar>
+    </bottom>
+</fx:root>
