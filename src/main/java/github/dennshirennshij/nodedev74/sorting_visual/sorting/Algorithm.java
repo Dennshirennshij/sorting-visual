@@ -7,7 +7,7 @@ public abstract class Algorithm {
 
     private ArrayList<VisualList> visualLists;
 
-    public abstract void start(int[] elements);
+    public abstract void start (int[] elements);
 
     public abstract String getName ();
 
