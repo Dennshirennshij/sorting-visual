@@ -2,8 +2,6 @@ package github.dennshirennshij.nodedev74.sorting_visual.gui.element;
 
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 
-import javafx.application.Platform;
-
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.VisualList;
 
 import javafx.concurrent.Task;
@@ -65,7 +63,7 @@ public class SortingWindow extends BorderPane {
     public void start(int[] array) {
         this.currentWindowState = WindowState.RUNNING;
 
-        Task<Void> task = new Task<Void>() {
+        Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws Exception {
                 algorithm.start(array);
