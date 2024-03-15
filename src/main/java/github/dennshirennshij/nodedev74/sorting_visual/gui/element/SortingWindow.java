@@ -12,8 +12,6 @@ import java.net.URL;
 
 public class SortingWindow extends BorderPane {
 
-    /* Fields */
-
     private SortingDisplay display;
     private Algorithm algorithm;
 
@@ -109,16 +107,17 @@ public class SortingWindow extends BorderPane {
     /* Halting/Pausing Logic */
 
     private long continueAt = 0;
-
+    private static final long defaultCooldown = 1000;
+    private long currentCooldown = 1000;
 
     private WindowState currentWindowState;
 
-    private long getCooldown () {
-        return 1000; // todo
+    public void changeCooldown(float factor) {
+        currentCooldown = Math.round(defaultCooldown / factor);
     }
 
     public void cooldown () {
-        continueAt = System.currentTimeMillis() + getCooldown();
+        continueAt = System.currentTimeMillis() + currentCooldown;
     }
 
     public boolean isHalted () {
