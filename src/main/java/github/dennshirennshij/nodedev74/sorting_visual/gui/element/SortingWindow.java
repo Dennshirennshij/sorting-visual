@@ -15,8 +15,11 @@ import java.net.URL;
 public class SortingWindow extends BorderPane {
 
     private SortingDisplay display;
+
     private Algorithm algorithm;
 
+    private static final long defaultCooldown = 1000;
+    private long currentCooldown = 1000;
     private long continueAt = 0;
 
     public enum WindowState
@@ -117,12 +120,12 @@ public class SortingWindow extends BorderPane {
         this.display = display;
     }
 
-    private long getCooldown () {
-        return 1000; // todo
+    public void changeCooldown(float factor) {
+        currentCooldown = Math.round(defaultCooldown / factor);
     }
 
     public void cooldown () {
-        continueAt = System.currentTimeMillis() + getCooldown();
+        continueAt = System.currentTimeMillis() + currentCooldown;
     }
 
     public void togglePause () {
