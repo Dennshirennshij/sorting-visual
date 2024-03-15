@@ -23,7 +23,6 @@ public class App extends Application {
 
         // Create an example SortingWindow
         SortingWindow window = new SortingWindow(Bubblesort.class);
-        window.start(new int[]{1,6,8,3,2,7});
         primaryStage.setScene(new Scene(window));
 
         primaryStage.show();

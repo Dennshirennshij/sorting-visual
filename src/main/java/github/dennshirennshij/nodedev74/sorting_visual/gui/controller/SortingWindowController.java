@@ -55,7 +55,7 @@ public class SortingWindowController {
     /* Start logic */
     @FXML
     public void StartButtonAction() {
-
+        sortingWindow.start(new int[]{1,5,4,6,7,9});
     }
 
     /* Speed change logic */
