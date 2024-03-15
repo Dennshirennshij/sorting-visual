@@ -6,6 +6,7 @@ import javafx.application.Platform;
 
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.VisualList;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 
@@ -60,7 +61,16 @@ public class SortingWindow extends BorderPane {
 
     public void start(int[] array) {
         this.currentWindowState = WindowState.RUNNING;
-        Platform.runLater(() -> algorithm.start(array));
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                algorithm.start(array);
+                return null;
+            }
+        };
+
+        new Thread(task).start();
     }
 
     public void trade(int listIndex, int i1, int i2) {

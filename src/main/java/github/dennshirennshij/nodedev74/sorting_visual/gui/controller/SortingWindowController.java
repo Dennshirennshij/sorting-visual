@@ -3,8 +3,10 @@ package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingDisplay;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingWindow;
 import javafx.fxml.FXML;
+import javafx.scene.AccessibleAction;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitMenuButton;
 
 public class SortingWindowController {
 
@@ -37,6 +39,9 @@ public class SortingWindowController {
     private Button startButton;
 
     @FXML
+    private SplitMenuButton speedSetter;
+
+    @FXML
     private Button pauseButton;
 
     @FXML
@@ -52,6 +57,9 @@ public class SortingWindowController {
     public void StartButtonAction() {
 
     }
+
+    /* Speed change logic */
+
 
     /* Pause logic */
     @FXML
