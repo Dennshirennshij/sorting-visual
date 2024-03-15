@@ -60,7 +60,7 @@ public class SortingWindow extends BorderPane {
     public void start(int[] array) {
         this.currentWindowState = WindowState.RUNNING;
 
-        Task<Void> task = new Task<Void>() {
+        Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws Exception {
                 algorithm.start(array);
