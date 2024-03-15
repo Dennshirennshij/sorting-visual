@@ -76,7 +76,7 @@ public class SortingWindowController {
     /* Stop logic */
     @FXML
     public void StopButtonAction() {
-
+        sortingWindow.setCurrentWindowState(SortingWindow.WindowState.STOPPED); // todo: add closing option later
     }
 
     /* Sync logic */

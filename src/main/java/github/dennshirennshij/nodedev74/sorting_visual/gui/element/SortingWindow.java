@@ -121,7 +121,7 @@ public class SortingWindow extends BorderPane {
     }
 
     public boolean isHalted () {
-        return System.currentTimeMillis() < continueAt || isPaused();
+        return System.currentTimeMillis() < continueAt || isPaused() || !isRunning();
     }
 
     public boolean isRunning() {
