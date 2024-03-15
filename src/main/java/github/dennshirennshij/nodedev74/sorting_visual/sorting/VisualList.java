@@ -18,18 +18,18 @@ public class VisualList extends ArrayList<Integer> {
 
     @Override
     public Integer set(int index, Integer element) {
-        System.out.println("Set " + element + " at " + index);
+        //System.out.println("Set " + element + " at " + index);
         return internalSet(index, element);
     }
 
     @Override
     public Integer get(int index) {
-        System.out.println("Get " + internalGet(index) + " at " + index);
+        //System.out.println("Get " + internalGet(index) + " at " + index);
         return internalGet(index);
     }
 
     public void trade (int i1, int i2) {
-        System.out.println("Trade " + i1 + " with " + i2);
+        //System.out.println("Trade " + i1 + " with " + i2);
         Integer i1_val = super.get(i1);
         super.set(i1, super.get(i2));
         super.set(i2, i1_val);

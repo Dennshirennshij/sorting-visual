@@ -19,53 +19,61 @@ public abstract class Algorithm {
     }
 
     protected int addVisualList () {
-        while (window.isPaused());
+        while (window.isHalted());
         VisualList visualList = new VisualList();
         window.addVisualList(visualList);
         this.visualLists.add(visualList);
+        window.cooldown();
         return this.visualLists.size() - 1;
     }
 
     protected void removeVisualList (int listIndex) {
-        while (window.isPaused());
+        while (window.isHalted());
         window.removeVisualList(listIndex);
         this.visualLists.remove(listIndex);
+        window.cooldown();
     }
     protected int addVisualList (int[] elements) {
-        while (window.isPaused());
+        while (window.isHalted());
         VisualList visualList = new VisualList(elements);
         window.addVisualList(visualList);
         this.visualLists.add(visualList);
+        window.cooldown();
         return this.visualLists.size() - 1;
     }
 
     protected int getLength (int listIndex) {
-        while (window.isPaused());
+        while (window.isHalted());
         window.getLength(listIndex);
+        window.cooldown();
         return this.visualLists.get(listIndex).size();
     }
 
     protected void trade (int listIndex, int i1, int i2) {
-        while (window.isPaused());
+        while (window.isHalted());
         window.trade(listIndex, i1, i2);
+        window.cooldown();
         this.visualLists.get(listIndex).trade(i1, i2);
     }
 
     protected void set (int listIndex, int index, int value) {
-        while (window.isPaused());
+        while (window.isHalted());
         window.set(listIndex, index, value);
+        window.cooldown();
         this.visualLists.get(listIndex).set(index, value);
     }
 
     protected int get (int listIndex, int index) {
-        while (window.isPaused());
+        while (window.isHalted());
         window.get(listIndex, index);
+        window.cooldown();
         return this.visualLists.get(listIndex).get(index);
     }
 
     protected int[] getArray (int listIndex) {
-        while (window.isPaused());
+        while (window.isHalted());
         window.getArray(listIndex);
+        window.cooldown();
         return this.visualLists.get(listIndex).toIntArray();
     }
 
