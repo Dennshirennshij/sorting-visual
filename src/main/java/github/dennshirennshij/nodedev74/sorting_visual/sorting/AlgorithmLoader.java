@@ -1,17 +1,44 @@
 package github.dennshirennshij.nodedev74.sorting_visual.plugins;
+
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PluginLoader {
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 
+public class AlgorithmLoader {
+
+    private static AlgorithmLoader singleton;
     private HashMap<String, Class<? extends Algorithm>> loadedClasses = new HashMap<>();
 
-    public static void load() {
+    private AlgorithmLoader() {
+        try {
+            Path jarDir = Paths.get("");
+            WatchService watcher = FileSystems.getDefault().newWatchService();
+            WatchKey key = jarDir.register(watcher, ENTRY_CREATE);
+        } catch (Exception e) {
+            System.out.println("Unable to watch directory");
+        }
+    }
+
+    public static AlgorithmLoader getInstance() {
+        if(singleton == null) {
+            singleton = new AlgorithmLoader();
+        }
+        return singleton;
+    }
+
+    private void onNewFileAccessible() {
+        // todo: file load logic
+        System.out.println("new file found");
+    }
+
+    public void load() {
         // Ordnerpfad zu den JAR-Dateien
         String pluginsFolderPath = "plugins/";
 
