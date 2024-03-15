@@ -91,4 +91,13 @@ public class SortingWindow extends BorderPane {
     public void getArray(int listIndex) {
         System.out.println("Get array of list " + listIndex);
     }
+
+    public SortingDisplay getSortingDisplay () {
+        // todo
+    }
+
+    public void setSortingDisplay (SortingDisplay display) {
+        // todo
+    }
+
 }
