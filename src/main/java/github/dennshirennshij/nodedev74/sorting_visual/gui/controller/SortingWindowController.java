@@ -1,5 +1,6 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
+import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingDisplay;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingWindow;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,6 +27,10 @@ public class SortingWindowController {
 
     @FXML
     private Button SyncButton;
+
+    /* Center Controls */
+    @FXML
+    private SortingDisplay SortingDisplay;
 
     /* Bottom Controls */
     @FXML

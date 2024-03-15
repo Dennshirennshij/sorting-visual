@@ -26,7 +26,7 @@
         </ToolBar>
     </top>
     <center>
-        <SortingDisplay />
+        <SortingDisplay fx:id="SortingDisplay" />
     </center>
     <bottom>
         <ToolBar>
