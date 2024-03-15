@@ -57,12 +57,7 @@ public class SortingWindow extends BorderPane {
 
     public void start(int[] array) {
         this.currentWindowState = WindowState.RUNNING;
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        });
+        Platform.runLater(() -> algorithm.start(array));
     }
 
     public void trade(int listIndex, int i1, int i2) {
