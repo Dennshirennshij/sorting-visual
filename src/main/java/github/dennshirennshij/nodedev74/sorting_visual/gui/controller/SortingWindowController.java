@@ -64,7 +64,7 @@ public class SortingWindowController {
     /* Pause logic */
     @FXML
     public void PauseButtonAction() {
-
+        sortingWindow.setCurrentWindowState(SortingWindow.WindowState.PAUSED);
     }
 
     /* Stop logic */
