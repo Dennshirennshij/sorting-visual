@@ -2,10 +2,12 @@ package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
 import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingDisplay;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingWindow;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.AccessibleAction;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 
 public class SortingWindowController {
@@ -50,6 +52,8 @@ public class SortingWindowController {
     @FXML
     public void initialize() {
         sortingWindow.setSortingDisplay(sortingDisplay);
+
+
     }
 
     /* Start logic */
@@ -59,6 +63,16 @@ public class SortingWindowController {
     }
 
     /* Speed change logic */
+    @FXML
+    public void SpeedChange(ActionEvent evt) {
+        MenuItem item = (MenuItem) evt.getTarget();
+
+        // Change cool down
+        sortingWindow.changeCooldown(Float.parseFloat(item.getId()));
+
+        // Update UI value
+        speedSetter.setText(item.getId() + "x");
+    }
 
 
     /* Pause logic */

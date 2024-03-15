@@ -37,12 +37,13 @@
             <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
             <SplitMenuButton fx:id="speedSetter" text="1x">
                 <items>
-                    <MenuItem mnemonicParsing="false" text="0.25x" />
-                    <MenuItem mnemonicParsing="false" text="0.5x" />
-                    <MenuItem mnemonicParsing="false" text="1x" />
-                    <MenuItem mnemonicParsing="false" text="2x" />
-                    <MenuItem mnemonicParsing="false" text="4x" />
-                    <MenuItem mnemonicParsing="false" text="Runtime" />
+                    <MenuItem id="0.25" onAction="#SpeedChange" text="0.25x" />
+                    <MenuItem id="0.5" onAction="#SpeedChange" text="0.5x" />
+                    <MenuItem id="1" onAction="#SpeedChange" text="1x" />
+                    <MenuItem id="2" onAction="#SpeedChange" text="2x" />
+                    <MenuItem id="4" onAction="#SpeedChange" text="4x" />
+                    <MenuItem id="10" onAction="#SpeedChange" text="10x" />
+                    <MenuItem id="100" onAction="#SpeedChange" text="100x" />
                 </items>
             </SplitMenuButton>
             <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
