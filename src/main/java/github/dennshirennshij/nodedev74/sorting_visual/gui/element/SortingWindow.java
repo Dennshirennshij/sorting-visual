@@ -13,6 +13,7 @@ import java.net.URL;
 
 public class SortingWindow extends BorderPane {
 
+    private SortingDisplay display;
     private Algorithm algorithm;
 
     private long continueAt = 0;
@@ -98,13 +99,12 @@ public class SortingWindow extends BorderPane {
         System.out.println("Get array of list " + listIndex);
     }
 
-    public SortingDisplay getSortingDisplay () {
-        // todo
-        return null;
+    public SortingDisplay getSortingDisplay() {
+        return this.display;
     }
 
-    public void setSortingDisplay (SortingDisplay display) {
-        // todo
+    public void setSortingDisplay(SortingDisplay display) {
+        this.display = display;
     }
 
     private long getCooldown () {
