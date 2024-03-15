@@ -12,19 +12,12 @@ import java.net.URL;
 
 public class SortingWindow extends BorderPane {
 
+    /* Fields */
+
     private SortingDisplay display;
     private Algorithm algorithm;
 
-    private long continueAt = 0;
 
-    public enum WindowState
-    {
-        PAUSED,
-        RUNNING,
-        STOPPED
-    }
-
-    private WindowState currentWindowState;
 
     /* Constructors */
 
@@ -49,13 +42,9 @@ public class SortingWindow extends BorderPane {
         // todo: impl initial logic
     }
 
-    public WindowState getCurrentWindowState() {
-        return currentWindowState;
-    }
 
-    public void setCurrentWindowState(WindowState newState) {
-        currentWindowState = newState;
-    }
+
+    /* Starting the Algorithm */
 
     public void start(int[] array) {
         this.currentWindowState = WindowState.RUNNING;
@@ -70,6 +59,22 @@ public class SortingWindow extends BorderPane {
 
         new Thread(task).start();
     }
+
+
+
+    /* Sorting Display Stuff */
+
+    public SortingDisplay getSortingDisplay() {
+        return this.display;
+    }
+
+    public void setSortingDisplay(SortingDisplay display) {
+        this.display = display;
+    }
+
+
+
+    /* Interface from Algorithm */
 
     public void trade(int listIndex, int i1, int i2) {
         System.out.println("Trade " + i1 + " with " + i2 + " in list " + listIndex);
@@ -87,14 +92,6 @@ public class SortingWindow extends BorderPane {
         System.out.println("Add visual list");
     }
 
-    public boolean isHalted () {
-        return System.currentTimeMillis() < continueAt || isPaused();
-    }
-
-    public boolean isPaused() {
-        return currentWindowState == WindowState.PAUSED;
-    }
-
     public void getLength(int listIndex) {
         System.out.println("Get length of list " + listIndex);
     }
@@ -107,13 +104,14 @@ public class SortingWindow extends BorderPane {
         System.out.println("Get array of list " + listIndex);
     }
 
-    public SortingDisplay getSortingDisplay() {
-        return this.display;
-    }
 
-    public void setSortingDisplay(SortingDisplay display) {
-        this.display = display;
-    }
+
+    /* Halting/Pausing Logic */
+
+    private long continueAt = 0;
+
+
+    private WindowState currentWindowState;
 
     private long getCooldown () {
         return 1000; // todo
@@ -123,6 +121,14 @@ public class SortingWindow extends BorderPane {
         continueAt = System.currentTimeMillis() + getCooldown();
     }
 
+    public boolean isHalted () {
+        return System.currentTimeMillis() < continueAt || isPaused();
+    }
+
+    public boolean isPaused() {
+        return currentWindowState == WindowState.PAUSED;
+    }
+
     public void togglePause () {
         if (isPaused()) {
             continueAt = System.currentTimeMillis();
@@ -130,6 +136,21 @@ public class SortingWindow extends BorderPane {
         } else {
             setCurrentWindowState(WindowState.PAUSED);
         }
+    }
+
+    public enum WindowState
+    {
+        PAUSED,
+        RUNNING,
+        STOPPED
+    }
+
+    public WindowState getCurrentWindowState() {
+        return currentWindowState;
+    }
+
+    public void setCurrentWindowState(WindowState newState) {
+        currentWindowState = newState;
     }
 
 }
