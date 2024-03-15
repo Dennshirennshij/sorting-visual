@@ -40,7 +40,7 @@ public class SortingWindow extends BorderPane {
         this();
 
         try {
-            this.algorithm = algorithm.getDeclaredConstructor().newInstance(this);
+            this.algorithm = algorithm.getDeclaredConstructor(SortingWindow.class).newInstance(this);
         } catch (Exception e) {
             System.out.println("Couldnt load algorithm");
         }

@@ -1,6 +1,7 @@
-package github.dennshirennshij.nodedev74.sorting_visual.plugins;
+package github.dennshirennshij.nodedev74.sorting_visual.sorting;
 
-import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
+import javafx.application.Application;
+import javafx.application.Platform;
 
 import java.io.File;
 import java.net.URL;
@@ -8,22 +9,48 @@ import java.net.URLClassLoader;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
 public class AlgorithmLoader {
 
     private static AlgorithmLoader singleton;
+
     private HashMap<String, Class<? extends Algorithm>> loadedClasses = new HashMap<>();
 
     private AlgorithmLoader() {
-        try {
-            Path jarDir = Paths.get("");
-            WatchService watcher = FileSystems.getDefault().newWatchService();
-            WatchKey key = jarDir.register(watcher, ENTRY_CREATE);
-        } catch (Exception e) {
-            System.out.println("Unable to watch directory");
-        }
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Path dir = Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParent();
+                    WatchService watchService = FileSystems.getDefault().newWatchService();
+                    dir.register(watchService, ENTRY_CREATE);
+
+                    while (true) {
+                        WatchKey key;
+                        try {
+                            key = watchService.poll(10, TimeUnit.SECONDS); // Warte 10 Sekunden auf ein Event
+                        } catch (InterruptedException e) {
+                            return;
+                        }
+
+                        if (key != null) {
+                            for (WatchEvent<?> event : key.pollEvents()) {
+                                // todo: add classes threadsafe to array
+                            }
+                            key.reset();
+                        }
+                    }
+                }catch (Exception e) {
+                    System.out.println("failed to watch dir");
+                }
+            }
+        });
+
+        thread.start();
     }
 
     public static AlgorithmLoader getInstance() {
@@ -31,11 +58,6 @@ public class AlgorithmLoader {
             singleton = new AlgorithmLoader();
         }
         return singleton;
-    }
-
-    private void onNewFileAccessible() {
-        // todo: file load logic
-        System.out.println("new file found");
     }
 
     public void load() {
