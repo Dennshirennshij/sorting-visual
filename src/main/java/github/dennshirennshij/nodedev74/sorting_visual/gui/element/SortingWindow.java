@@ -124,6 +124,10 @@ public class SortingWindow extends BorderPane {
         return System.currentTimeMillis() < continueAt || isPaused();
     }
 
+    public boolean isRunning() {
+        return currentWindowState == WindowState.RUNNING;
+    }
+
     public boolean isPaused() {
         return currentWindowState == WindowState.PAUSED;
     }

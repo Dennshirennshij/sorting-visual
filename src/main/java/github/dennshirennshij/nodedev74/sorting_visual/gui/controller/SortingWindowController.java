@@ -64,7 +64,13 @@ public class SortingWindowController {
     /* Pause logic */
     @FXML
     public void PauseButtonAction() {
-        sortingWindow.setCurrentWindowState(SortingWindow.WindowState.PAUSED);
+        sortingWindow.togglePause();
+
+        if(sortingWindow.isPaused()) {
+            pauseButton.setText("Resume");
+        } else if(sortingWindow.isRunning()) {
+            pauseButton.setText("Pause");
+        }
     }
 
     /* Stop logic */
