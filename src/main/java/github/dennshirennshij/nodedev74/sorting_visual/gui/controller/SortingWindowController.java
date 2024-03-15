@@ -10,41 +10,41 @@ public class SortingWindowController {
 
     // Root: SortingWindow
     @FXML
-    private SortingWindow SortingWindow;
+    private SortingWindow sortingWindow;
 
     /* Top Controls */
     @FXML
-    private Label CheckoutCounter;
+    private Label checkoutCounter;
 
     @FXML
-    private Label SwapCounter;
+    private Label swapCounter;
 
     @FXML
-    private Label AlgorithmName;
+    private Label algorithmName;
 
     @FXML
-    private Label Timer;
+    private Label timer;
 
     @FXML
-    private Button SyncButton;
+    private Button syncButton;
 
     /* Center Controls */
     @FXML
-    private SortingDisplay SortingDisplay;
+    private SortingDisplay sortingDisplay;
 
     /* Bottom Controls */
     @FXML
-    private Button StartButton;
+    private Button startButton;
 
     @FXML
-    private Button PauseButton;
+    private Button pauseButton;
 
     @FXML
-    private Button StopButton;
+    private Button stopButton;
 
     @FXML
     public void initialize() {
-
+        sortingWindow.setSortingDisplay(sortingDisplay);
     }
 
     /* Start logic */
