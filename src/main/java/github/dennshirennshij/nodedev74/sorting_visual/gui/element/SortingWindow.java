@@ -2,8 +2,6 @@ package github.dennshirennshij.nodedev74.sorting_visual.gui.element;
 
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 
-import javafx.application.Platform;
-
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.VisualList;
 
 import javafx.concurrent.Task;
