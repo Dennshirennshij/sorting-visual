@@ -33,7 +33,7 @@ public class WindowLayout extends VBox {
 
     private HBox getCurrentLayer() {
         if(!isLayerFull(layers.size() - 1)) {
-            return layers.getLast();
+            return layers.get(layers.size() - 1);
         } else {
             return createLayer();
         }
