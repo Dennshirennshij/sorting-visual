@@ -6,11 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class App extends Application {
-
-    public App() {
-
-    }
-
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Sorting visual");
