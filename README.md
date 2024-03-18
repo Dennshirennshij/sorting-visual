@@ -1,4 +1,10 @@
 # Sorting visual
+## How to implement your own sorting algorithm
+ - Take the provided compiled jar file and add it to your dependencies in your IDE
+ - Create a Main-Class with a main-method to start the program. The method should look like the one provided in the examples
+ - For each of your sorting algorithms, create a class extending the Algorithm-class and implement the required methods (see examples)
+ - Run your project, Have fun !
+
 ## Todos
  - Update to the BarChart used as a SortingDisplay
  - Implement loading plugins
