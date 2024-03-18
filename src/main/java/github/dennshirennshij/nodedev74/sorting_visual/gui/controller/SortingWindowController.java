@@ -1,10 +1,14 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
-import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingDisplay;
-import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingWindow;
+import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmFinishedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmInitEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.CheckCountChangeEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.SwapCountChangedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.node.SortingDisplay;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.node.SortingWindow;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.node.TimerControl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.AccessibleAction;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -27,7 +31,7 @@ public class SortingWindowController {
     private Label algorithmName;
 
     @FXML
-    private Label timer;
+    private TimerControl timer;
 
     @FXML
     private Button syncButton;
@@ -53,13 +57,20 @@ public class SortingWindowController {
     public void initialize() {
         sortingWindow.setSortingDisplay(sortingDisplay);
 
+        /* Register communication events */
 
+        sortingWindow.addEventHandler(SwapCountChangedEvent.EVENT_TYPE, this::updateSwapCounter);
+        sortingWindow.addEventHandler(CheckCountChangeEvent.EVENT_TYPE, this::updateCheckCounter);
+
+        sortingWindow.addEventHandler(AlgorithmFinishedEvent.EVENT_TYPE, this::algorithmFinished);
+        sortingWindow.addEventHandler(AlgorithmInitEvent.EVENT_TYPE, this::algorithmSpecified);
     }
 
     /* Start logic */
     @FXML
     public void StartButtonAction() {
-        sortingWindow.start(new int[]{1,5,4,6,7,9});
+        sortingWindow.start(new int[]{1,5,4,6,10,9});
+        timer.start();
     }
 
     /* Speed change logic */
@@ -67,10 +78,7 @@ public class SortingWindowController {
     public void SpeedChange(ActionEvent evt) {
         MenuItem item = (MenuItem) evt.getTarget();
 
-        // Change cool down
         sortingWindow.changeCooldown(Float.parseFloat(item.getId()));
-
-        // Update UI value
         speedSetter.setText(item.getId() + "x");
     }
 
@@ -97,5 +105,24 @@ public class SortingWindowController {
     @FXML
     public void SyncButtonAction() {
 
+    }
+
+    /* Counter logic */
+
+    public void updateSwapCounter(SwapCountChangedEvent evt) {
+        swapCounter.setText("Swaps: " + evt.getValue());
+    }
+
+    public void updateCheckCounter(CheckCountChangeEvent evt) {
+        checkoutCounter.setText("Checks: " + evt.getValue());
+    }
+
+    public void algorithmSpecified(AlgorithmInitEvent evt) {
+        algorithmName.setText(sortingWindow.getAlgorithm().getName());
+    }
+
+    public void algorithmFinished(AlgorithmFinishedEvent evt) {
+        System.out.println("stopped!!!");
+        timer.stop();
     }
 }

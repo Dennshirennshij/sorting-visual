@@ -1,27 +1,36 @@
-package github.dennshirennshij.nodedev74.sorting_visual.gui.element;
+package github.dennshirennshij.nodedev74.sorting_visual.gui.node;
 
+import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmFinishedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmInitEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.CheckCountChangeEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.SwapCountChangedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 
-import github.dennshirennshij.nodedev74.sorting_visual.sorting.VisualList;
-
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
+import java.util.List;
 
-public class SortingWindow extends BorderPane {
+public class SortingWindow extends HBox {
 
     private SortingDisplay display;
     private Algorithm algorithm;
 
+    /* Counter values */
 
+    private int swapCounter = 0;
+    private int checkCount = 0;
 
     /* Constructors */
 
     public SortingWindow() {
         try {
-            URL file = getClass().getClassLoader().getResource("fxml/SortingWindow.fxml");
+            URL file = getClass().getClassLoader().getResource("fxml/element/SortingWindow.fxml");
             FXMLLoader loader = new FXMLLoader(file);
             loader.setRoot(this);
             loader.load();
@@ -34,13 +43,11 @@ public class SortingWindow extends BorderPane {
 
         try {
             this.algorithm = algorithm.getDeclaredConstructor(SortingWindow.class).newInstance(this);
+            fireEvent(new AlgorithmInitEvent());
         } catch (Exception e) {
-            System.out.println("Couldnt load algorithm");
+            System.out.println("Couldnt load algorithm" + e.getMessage());
         }
-        // todo: impl initial logic
     }
-
-
 
     /* Starting the Algorithm */
 
@@ -51,6 +58,8 @@ public class SortingWindow extends BorderPane {
             @Override
             protected Void call() throws Exception {
                 algorithm.start(array);
+
+                Platform.runLater(() -> fireEvent(new AlgorithmFinishedEvent()));
                 return null;
             }
         };
@@ -58,7 +67,9 @@ public class SortingWindow extends BorderPane {
         new Thread(task).start();
     }
 
-
+    public Algorithm getAlgorithm() {
+        return this.algorithm;
+    }
 
     /* Sorting Display Stuff */
 
@@ -71,11 +82,14 @@ public class SortingWindow extends BorderPane {
     }
 
 
-
     /* Interface from Algorithm */
 
     public void trade(int listIndex, int i1, int i2) {
-        System.out.println("Trade " + i1 + " with " + i2 + " in list " + listIndex);
+        Platform.runLater(() -> {
+            System.out.println("Trade " + i1 + " with " + i2 + " in list " + listIndex);
+            display.swap(listIndex, i1, i2);
+            fireEvent(new SwapCountChangedEvent(++swapCounter));
+        });
     }
 
     public void set(int listIndex, int index, int value) {
@@ -83,11 +97,15 @@ public class SortingWindow extends BorderPane {
     }
 
     public void get(int listIndex, int index) {
-        System.out.println("Get " + index + " in list " + listIndex);
+        Platform.runLater(() -> {
+            System.out.println("Get " + index + " in list " + listIndex);
+
+            fireEvent(new CheckCountChangeEvent(++checkCount));
+        });
     }
 
-    public void addVisualList(VisualList visualList) {
-        System.out.println("Add visual list");
+    public void addVisualList(List<Integer> visualList) {
+        Platform.runLater(() -> display.addVisualList(visualList));
     }
 
     public void getLength(int listIndex) {

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import github.dennshirennshij.nodedev74.sorting_visual.gui.node.InputHandler?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<fx:root type="InputHandler"
+         xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+        <HBox>
+            <Label text="Array" />
+            <TextArea fx:id="arrayInput" />
+        </HBox>
+        <HBox>
+            <TextField fx:id="minValue" />
+            <TextField fx:id="maxValue" />
+            <TextField fx:id="sizeValue" />
+            <Button fx:id="randomArray" />
+        </HBox>
+</fx:root>

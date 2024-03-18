@@ -1,27 +1,27 @@
 package github.dennshirennshij.nodedev74.sorting_visual.sorting.example;
 
-import github.dennshirennshij.nodedev74.sorting_visual.gui.element.SortingWindow;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.node.SortingWindow;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 
 public class Bubblesort extends Algorithm {
+
     public Bubblesort(SortingWindow window) {
         super(window);
     }
 
+    public Bubblesort() {}
+
     @Override
-    public int[] start(int[] elements) {
+    public void start(int[] elements) {
         int list = addVisualList(elements);
-        for (int i = 1; i < getLength(list); i++) {
-            boolean finished = true;
-            for (int j = 0; j < getLength(list) - i; j++) {
-                if (get(list, j) > get(list, j + 1)){ // j vor j+1
-                    trade(list, j, j+1);
-                    finished = false;
+
+        for(int i = 1; i < getLength(list); i++) {
+            for(int j = 0; j < (getLength(list) - i); j++) {
+                if(get(list, j) > get(list, j + 1)) {
+                    trade(list, j, j + 1);
                 }
             }
-            if (finished) break;
         }
-        return getArray(list);
     }
 
     @Override

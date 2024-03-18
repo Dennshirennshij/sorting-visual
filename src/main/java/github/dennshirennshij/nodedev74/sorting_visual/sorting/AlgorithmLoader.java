@@ -1,26 +1,21 @@
 package github.dennshirennshij.nodedev74.sorting_visual.sorting;
 
-import javafx.application.Application;
-import javafx.application.Platform;
-
-import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.nio.file.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
-import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
 
 public class AlgorithmLoader {
 
     private static AlgorithmLoader singleton;
 
-    private HashMap<String, Class<? extends Algorithm>> loadedClasses = new HashMap<>();
+    private HashMap<String, Class<? extends Algorithm>> loadedClasses;
 
     private AlgorithmLoader() {
+
+        loadedClasses = new HashMap<>();
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -60,7 +55,24 @@ public class AlgorithmLoader {
         return singleton;
     }
 
-    public void load() {
+    public String[] getAlgorithmNames() {
+        return loadedClasses.keySet().toArray(new String[0]);
+    }
+
+    public void registerClass(Class<?extends Algorithm> target) {
+        try {
+            Algorithm algo = target.getDeclaredConstructor().newInstance();
+            loadedClasses.put(algo.getName(), target);
+        } catch(Exception e) {
+            System.out.println("Cannot create instance" + e.getMessage());
+        }
+    }
+
+    public Class<?extends Algorithm> getAlgorithmClassByName(String name) {
+        return loadedClasses.get(name);
+    }
+
+    /*public void load() {
         // Ordnerpfad zu den JAR-Dateien
         String pluginsFolderPath = "plugins/";
 
@@ -97,5 +109,5 @@ public class AlgorithmLoader {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
