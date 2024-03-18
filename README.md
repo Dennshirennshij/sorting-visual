@@ -5,3 +5,4 @@
  - Implement the SortingWindowController
  - Fix Timer control
  - Fix window sizing issue
+ - Fix Algorithm constructor overengineering 
