@@ -21,6 +21,8 @@ public class SortingWindow extends HBox {
     private SortingDisplay display;
     private Algorithm algorithm;
 
+    private int index;
+
     /* Counter values */
 
     private int swapCounter = 0;
@@ -38,8 +40,10 @@ public class SortingWindow extends HBox {
             System.out.println("Couldnt load fxml");
         }
     }
-    public SortingWindow(Class<? extends Algorithm> algorithm) {
+    public SortingWindow(Class<? extends Algorithm> algorithm, int index) {
         this();
+
+        this.index = index;
 
         try {
             this.algorithm = algorithm.getDeclaredConstructor(SortingWindow.class).newInstance(this);
@@ -102,6 +106,10 @@ public class SortingWindow extends HBox {
 
             fireEvent(new CheckCountChangeEvent(++checkCount));
         });
+    }
+
+    public int getIndex() {
+        return this.index;
     }
 
     public void addVisualList(List<Integer> visualList) {

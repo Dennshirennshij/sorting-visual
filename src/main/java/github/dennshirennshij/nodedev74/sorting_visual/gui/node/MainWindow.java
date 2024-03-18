@@ -14,6 +14,8 @@ public class MainWindow extends BorderPane {
 
     private final ArrayList<SortingWindow> sortingWindows;
 
+    private int selectedWindow;
+
     public MainWindow() {
         sortingWindows = new ArrayList<>();
 
@@ -30,7 +32,7 @@ public class MainWindow extends BorderPane {
     public void createSortingWindowTile(Class<?extends Algorithm> algo) {
         WindowLayout tilePane = (WindowLayout) lookup("#tilePane");
 
-        SortingWindow sortingWindow = new SortingWindow(algo);
+        SortingWindow sortingWindow = new SortingWindow(algo, sortingWindows.size());
 
         tilePane.addWindow(sortingWindow);
         sortingWindows.add(sortingWindow);
@@ -42,5 +44,13 @@ public class MainWindow extends BorderPane {
         TilePane tilePane = (TilePane) lookup("#tilePane");
 
         sortingWindows.remove(index);
+    }
+
+    public void setSelectedWindow(int index) {
+        this.selectedWindow = index;
+    }
+
+    public SortingWindow getSelectedWindow() {
+        return sortingWindows.get(selectedWindow);
     }
 }

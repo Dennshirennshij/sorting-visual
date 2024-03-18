@@ -25,6 +25,6 @@
        <WindowLayout fx:id="tilePane" minWidth="-Infinity" minHeight="-Infinity" />
    </center>
     <bottom>
-        <TabPane fx:id="tabbedInput" />
+        <InputHandler fx:id="inputHandler" />
     </bottom>
 </fx:root>

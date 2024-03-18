@@ -2,8 +2,10 @@ package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
 import github.dennshirennshij.nodedev74.sorting_visual.event.CreationAppliedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.CreationSuccess;
+import github.dennshirennshij.nodedev74.sorting_visual.event.WindowSelectedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.layout.WindowLayout;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.node.CreationDialog;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.node.InputHandler;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.node.MainWindow;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.AlgorithmLoader;
@@ -32,6 +34,15 @@ public class MainWindowController {
     public Label windowCounter;
 
     @FXML
+    public InputHandler inputHandler;
+
+    @FXML
+    public void initialize() {
+        Root.addEventHandler(CreationSuccess.EVENT_TYPE, this::creationOk);
+        Root.addEventHandler(WindowSelectedEvent.EVENT_TYPE, this::newWindowSelected);
+    }
+
+    @FXML
     public void addNewTile() {
         currentDialog = new Dialog<>();
         currentDialog.setTitle("Create Sorting Window");
@@ -41,7 +52,6 @@ public class MainWindowController {
         stage.setAlwaysOnTop(true);
 
         currentDialog.getDialogPane().addEventHandler(CreationAppliedEvent.EVENT_TYPE, this::gotTileData);
-        Root.addEventHandler(CreationSuccess.EVENT_TYPE, this::creationOk);
 
         currentDialog.show();
     }
@@ -51,6 +61,7 @@ public class MainWindowController {
             addWindowButton.setDisable(true);
         }
         windowCounter.setText(tilePane.countWindows() + "/" + tilePane.MAX_LAYERS * tilePane.MAX_LAYER_NODES);
+        inputHandler.addNewHandler();
 
         currentDialog.setResult(Boolean.TRUE);
         currentDialog.close();
@@ -61,5 +72,9 @@ public class MainWindowController {
         Class<?extends Algorithm> algo = loader.getAlgorithmClassByName(evt.getAlgorithm());
 
         Root.createSortingWindowTile(algo);
+    }
+
+    public void newWindowSelected(WindowSelectedEvent evt) {
+        inputHandler.setSelectedWindow(evt.getIndex());
     }
 }

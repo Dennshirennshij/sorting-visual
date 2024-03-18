@@ -1,18 +1,18 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
+import github.dennshirennshij.nodedev74.sorting_visual.event.WindowSelectedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmFinishedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmInitEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.CheckCountChangeEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.SwapCountChangedEvent;
-import github.dennshirennshij.nodedev74.sorting_visual.gui.node.SortingDisplay;
-import github.dennshirennshij.nodedev74.sorting_visual.gui.node.SortingWindow;
-import github.dennshirennshij.nodedev74.sorting_visual.gui.node.TimerControl;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.node.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
+import javafx.stage.Stage;
 
 public class SortingWindowController {
 
@@ -69,8 +69,14 @@ public class SortingWindowController {
     /* Start logic */
     @FXML
     public void StartButtonAction() {
-        sortingWindow.start(new int[]{1,5,4,6,10,9});
-        timer.start();
+        int index = sortingWindow.getIndex();
+        InputHandler handler = (InputHandler) sortingWindow.getScene().lookup("#inputHandler");
+        if(handler.hasValidInput(index)) {
+            sortingWindow.start(handler.getInputArray(index));
+            timer.start();
+        } else {
+            // todo: make visually clear that a valid input is required
+        }
     }
 
     /* Speed change logic */
@@ -124,5 +130,12 @@ public class SortingWindowController {
     public void algorithmFinished(AlgorithmFinishedEvent evt) {
         System.out.println("stopped!!!");
         timer.stop();
+    }
+
+    public void selectWindow() {
+        int index = sortingWindow.getIndex();
+
+        MainWindow mainWindow = (MainWindow) sortingWindow.getScene().lookup("#Root");
+        mainWindow.fireEvent(new WindowSelectedEvent(index));
     }
 }

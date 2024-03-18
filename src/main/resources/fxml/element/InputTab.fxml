@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+
+<fx:root type="github.dennshirennshij.nodedev74.sorting_visual.gui.node.InputTab"
+         fx:id="inputTab"
+         fx:controller="github.dennshirennshij.nodedev74.sorting_visual.gui.controller.InputTabController"
+         xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <VBox minWidth="-Infinity" minHeight="-Infinity">
+        <HBox>
+            <Label text="Array"/>
+            <TextArea fx:id="arrayInput" promptText="1,2,3,4" />
+        </HBox>
+        <HBox>
+            <TextField fx:id="minValue" promptText="1" />
+            <TextField fx:id="maxValue" promptText="100" />
+            <TextField fx:id="sizeValue" promptText="20"/>
+            <Button fx:id="randomArray" onAction="#randomGenerator"/>
+        </HBox>
+    </VBox>
+</fx:root>

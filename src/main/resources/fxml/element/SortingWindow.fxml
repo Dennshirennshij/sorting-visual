@@ -19,6 +19,7 @@
          minHeight="400.0" minWidth="200.0" prefWidth="-Infinity" prefHeight="-Infinity"
          fx:id="sortingWindow"
          fx:controller="github.dennshirennshij.nodedev74.sorting_visual.gui.controller.SortingWindowController"
+         onMouseClicked="#selectWindow"
          xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <BorderPane minHeight="-Infinity" minWidth="-Infinity" SortingWindow.hgrow="ALWAYS">
         <top>
