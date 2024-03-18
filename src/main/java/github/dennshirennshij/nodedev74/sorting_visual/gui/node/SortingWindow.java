@@ -18,6 +18,8 @@ import java.util.List;
 
 public class SortingWindow extends HBox {
 
+    private Thread thread;
+
     private SortingDisplay display;
     private Algorithm algorithm;
 
@@ -67,8 +69,12 @@ public class SortingWindow extends HBox {
                 return null;
             }
         };
+        thread = new Thread(task);
+        thread.start();
+    }
 
-        new Thread(task).start();
+    public void kill () {
+        thread.stop();
     }
 
     public Algorithm getAlgorithm() {
