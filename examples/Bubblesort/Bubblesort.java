@@ -1,14 +1,14 @@
 import github.dennshirennshij.nodedev74.sorting_visual.gui.node.SortingWindow;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 
-public class ExampleAlgorithm extends Algorithm {
+public class Bubblesort extends Algorithm {
     
     // Constructors, do not change
-    public ExampleAlgorithm(SortingWindow window) {
+    public Bubblesort(SortingWindow window) {
         super(window);
     }
 
-    public ExampleAlgorithm() {}
+    public Bubblesort() {}
     
     
     // start method for the algorithm
@@ -28,6 +28,6 @@ public class ExampleAlgorithm extends Algorithm {
 
     public String getName() {
         // Change this to the name of your algorithm
-        return "Example Algorithm";
+        return "Bubblesort";
     }
 }

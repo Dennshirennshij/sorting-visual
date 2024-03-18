@@ -6,7 +6,7 @@ public class Main
 {
     public static void main(String[] args) {
         // Register any custom sorting algorithms
-        AlgorithmLoader.getInstance().registerClass(ExampleAlgorithm.class);
+        AlgorithmLoader.getInstance().registerClass(Bubblesort.class);
         
         // Launch the application
         // do not change this

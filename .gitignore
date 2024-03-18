@@ -33,4 +33,4 @@ build/
 /dependency-reduced-pom.xml
 
 ### Compiled BlueJ Classes from the example ###
-example/*.class
+examples/*/*.class
