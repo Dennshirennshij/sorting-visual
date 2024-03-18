@@ -1,7 +1,6 @@
 package github.dennshirennshij.nodedev74.sorting_visual;
 
 import github.dennshirennshij.nodedev74.sorting_visual.gui.node.MainWindow;
-import github.dennshirennshij.nodedev74.sorting_visual.sorting.AlgorithmLoader;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
