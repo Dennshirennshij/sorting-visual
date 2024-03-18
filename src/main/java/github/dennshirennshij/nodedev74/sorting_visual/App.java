@@ -2,7 +2,6 @@ package github.dennshirennshij.nodedev74.sorting_visual;
 
 import github.dennshirennshij.nodedev74.sorting_visual.gui.node.MainWindow;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.AlgorithmLoader;
-import github.dennshirennshij.nodedev74.sorting_visual.sorting.example.Bubblesort;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,8 +9,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     public App() {
-        AlgorithmLoader loader = AlgorithmLoader.getInstance();
-        loader.registerClass(Bubblesort.class);
+
     }
 
     @Override
