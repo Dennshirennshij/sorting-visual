@@ -2,10 +2,10 @@
 dependency1.from=Main
 dependency1.to=Bubblesort
 dependency1.type=UsesDependency
-editor.fx.0.height=737
-editor.fx.0.width=800
-editor.fx.0.x=560
-editor.fx.0.y=132
+editor.fx.0.height=0
+editor.fx.0.width=0
+editor.fx.0.x=0
+editor.fx.0.y=0
 objectbench.height=93
 objectbench.width=776
 package.divider.horizontal=0.6
