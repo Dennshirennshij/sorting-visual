@@ -84,7 +84,9 @@ public class SortingWindow extends HBox {
 
     public void killTask() {
         if(thread != null && thread.isAlive()) {
-            thread.stop();
+            try {
+                thread.stop();
+            } catch(Exception e) { }
         }
     }
 

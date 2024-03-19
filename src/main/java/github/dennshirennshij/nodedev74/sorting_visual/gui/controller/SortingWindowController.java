@@ -83,6 +83,7 @@ public class SortingWindowController {
 
         if(evt.getNewState() == SortingWindow.WindowState.STOPPED) {
             closeButton.setDisable(false);
+            pauseButton.setDisable(true);
         }
 
         if(evt.getNewState() == SortingWindow.WindowState.FINISHED) {
@@ -136,11 +137,13 @@ public class SortingWindowController {
     @FXML
     public void StopButtonAction() {
         sortingWindow.setCurrentWindowState(SortingWindow.WindowState.STOPPED);
+        timer.stop();
     }
 
     /* Sync logic */
     @FXML
     public void CloseButtonAction() {
+        timer.stop();
         sortingWindow.killTask();
         sortingWindow.destroy();
     }
