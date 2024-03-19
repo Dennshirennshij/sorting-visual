@@ -72,7 +72,13 @@ public class SortingWindowController {
 
     public void windowStateChanged(WindowStateChangedEvent evt) {
         if(evt.getNewState() == SortingWindow.WindowState.RUNNING) {
+            pauseButton.setText("Pause");
+            startButton.setDisable(true);
             closeButton.setDisable(true);
+        }
+
+        if(evt.getNewState() == SortingWindow.WindowState.PAUSED) {
+            pauseButton.setText("Resume");
         }
 
         if(evt.getNewState() == SortingWindow.WindowState.STOPPED) {
@@ -112,8 +118,9 @@ public class SortingWindowController {
     @FXML
     public void SpeedChange(ActionEvent evt) {
         MenuItem item = (MenuItem) evt.getTarget();
+        float factor = Float.parseFloat(item.getId());
 
-        sortingWindow.changeCooldown(Float.parseFloat(item.getId()));
+        sortingWindow.changeCooldown(factor);
         speedSetter.setText(item.getId() + "x");
     }
 
@@ -122,6 +129,7 @@ public class SortingWindowController {
     @FXML
     public void PauseButtonAction() {
         sortingWindow.togglePause();
+        timer.togglePause();
     }
 
     /* Stop logic */

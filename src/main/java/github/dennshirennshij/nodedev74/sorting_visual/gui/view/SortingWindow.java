@@ -168,8 +168,8 @@ public class SortingWindow extends HBox {
     /* Halting/Pausing Logic */
 
     private long continueAt = 0;
-    private static final long defaultCooldown = 1000;
-    private long currentCooldown = 1000;
+    private static final long defaultCooldown = 500;
+    private long currentCooldown = 500;
 
     private WindowState currentWindowState;
 

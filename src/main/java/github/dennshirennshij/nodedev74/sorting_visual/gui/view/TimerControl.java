@@ -3,35 +3,43 @@ package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class TimerControl extends Label {
 
-    private final Timer timer = new Timer();
+    private Timer timer;
 
     private final TimerTask timerTask;
-
-    private int speed = 1;
-    private boolean isPaused = false;
+    private boolean isPaused;
 
     private long startTime;
 
     private long timeStore;
 
     public TimerControl() {
+        isPaused = true;
+        timer = new Timer();
+
         timerTask = new TimerTask() {
             public void run() {
-                Date time = new Date((System.currentTimeMillis() - startTime) * speed);
-                Platform.runLater(() -> setText(time.getMinutes() + ":" + time.getSeconds()));
+                if(!isPaused) {
+                    long time = (System.currentTimeMillis()) - startTime;
+                    Date date = new Date(time);
+
+                    Platform.runLater(() -> setText((date.getHours() - 1) + ":" + date.getMinutes() + ":" + date.getSeconds()));
+                }
             }
         };
     }
 
     public void start() {
+        isPaused = false;
         startTime = System.currentTimeMillis();
-        timer.scheduleAtFixedRate(timerTask,0, 100l);
+        timer.scheduleAtFixedRate(timerTask,0, 1000L);
     }
 
     public void stop() {
@@ -39,19 +47,13 @@ public class TimerControl extends Label {
         timerTask.cancel();
     }
 
-    public void speedUp(float factor) {
-
-    }
-
     public void togglePause() {
-        isPaused = !isPaused;
-
         if(isPaused) {
-            timerTask.cancel();
-            timeStore = System.currentTimeMillis();
+            startTime = System.currentTimeMillis() - (timeStore - startTime);
+            isPaused = false;
         } else {
-            startTime = System.currentTimeMillis();
-            timer.scheduleAtFixedRate(timerTask, new Date(timeStore), 100l);
+            timeStore = System.currentTimeMillis();
+            isPaused = true;
         }
     }
 }
