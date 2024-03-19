@@ -6,7 +6,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.VBox?>
-<fx:root type="github.dennshirennshij.nodedev74.sorting_visual.gui.node.CreationDialog"
+<fx:root type="github.dennshirennshij.nodedev74.sorting_visual.gui.view.CreationDialog"
          maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
          prefHeight="200.0" prefWidth="150.0"
          fx:id="dialog"

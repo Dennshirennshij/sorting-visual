@@ -1,16 +1,19 @@
-package github.dennshirennshij.nodedev74.sorting_visual.gui.node;
+package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
 
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmFinishedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmInitEvent;
-import github.dennshirennshij.nodedev74.sorting_visual.event.CheckCountChangeEvent;
-import github.dennshirennshij.nodedev74.sorting_visual.event.SwapCountChangedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.CheckCountChangeEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.SwapCountChangedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowIndexUpdateEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowRemovedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowStateChangedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
@@ -58,23 +61,45 @@ public class SortingWindow extends HBox {
     /* Starting the Algorithm */
 
     public void start(int[] array) {
-        this.currentWindowState = WindowState.RUNNING;
+        setCurrentWindowState(WindowState.RUNNING);
 
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws Exception {
-                algorithm.start(array);
-
-                Platform.runLater(() -> fireEvent(new AlgorithmFinishedEvent()));
-                return null;
+                    algorithm.start(array);
+                    return null;
             }
         };
         thread = new Thread(task);
         thread.start();
+
+        task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                setCurrentWindowState(WindowState.FINISHED);
+                fireEvent(new AlgorithmFinishedEvent());
+            }
+        });
     }
 
-    public void kill () {
-        thread.stop();
+    public void killTask() {
+        if(thread != null && thread.isAlive()) {
+            thread.stop();
+        }
+    }
+
+    public void destroy() {
+        InputHandler inputHandler = (InputHandler) getScene().lookup("#inputHandler");
+        inputHandler.removeHandler(this.index);
+
+        MainWindow window = (MainWindow) getScene().lookup("#Root");
+        window.removeSortingWindow(this.index);
+
+        window.getSortingWindows().forEach((win) -> {
+            win.fireEvent(new WindowIndexUpdateEvent(this.index));
+        });
+
+        window.fireEvent(new WindowRemovedEvent());
     }
 
     public Algorithm getAlgorithm() {
@@ -116,6 +141,10 @@ public class SortingWindow extends HBox {
 
     public int getIndex() {
         return this.index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public void addVisualList(List<Integer> visualList) {
@@ -177,7 +206,8 @@ public class SortingWindow extends HBox {
     {
         PAUSED,
         RUNNING,
-        STOPPED
+        STOPPED,
+        FINISHED
     }
 
     public WindowState getCurrentWindowState() {
@@ -185,7 +215,9 @@ public class SortingWindow extends HBox {
     }
 
     public void setCurrentWindowState(WindowState newState) {
+        WindowState old = currentWindowState;
         currentWindowState = newState;
+        fireEvent(new WindowStateChangedEvent(old, newState));
     }
 
 }

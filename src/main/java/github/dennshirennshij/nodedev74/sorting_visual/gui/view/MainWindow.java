@@ -1,11 +1,10 @@
-package github.dennshirennshij.nodedev74.sorting_visual.gui.node;
+package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
 
-import github.dennshirennshij.nodedev74.sorting_visual.event.CreationSuccess;
+import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowCreatedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.layout.WindowLayout;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.TilePane;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,13 +36,18 @@ public class MainWindow extends BorderPane {
         tilePane.addWindow(sortingWindow);
         sortingWindows.add(sortingWindow);
 
-        fireEvent(new CreationSuccess());
+        fireEvent(new WindowCreatedEvent());
     }
 
     public void removeSortingWindow(int index) {
-        TilePane tilePane = (TilePane) lookup("#tilePane");
+        WindowLayout tilePane = (WindowLayout) lookup("#tilePane");
+        tilePane.removeWindow(index);
 
         sortingWindows.remove(index);
+    }
+
+    public ArrayList<SortingWindow> getSortingWindows() {
+        return this.sortingWindows;
     }
 
     public void setSelectedWindow(int index) {

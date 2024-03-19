@@ -1,4 +1,4 @@
-package github.dennshirennshij.nodedev74.sorting_visual.gui.node;
+package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
@@ -35,6 +35,7 @@ public class TimerControl extends Label {
     }
 
     public void stop() {
+        timer.cancel();
         timerTask.cancel();
     }
 

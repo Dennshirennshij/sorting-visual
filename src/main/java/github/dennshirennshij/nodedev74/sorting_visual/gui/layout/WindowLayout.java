@@ -1,17 +1,15 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.layout;
 
-import github.dennshirennshij.nodedev74.sorting_visual.gui.node.SortingWindow;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.SortingWindow;
 import javafx.scene.layout.*;
 
 import java.util.ArrayList;
 
 public class WindowLayout extends VBox {
 
-    public static final int MAX_LAYERS = 2;
+    public static final int MAX_LAYERS = 1;
     public static final int MAX_LAYER_NODES = 2;
-
     private final ArrayList<HBox> layers;
-
     private int count;
 
     public WindowLayout() {
@@ -29,6 +27,13 @@ public class WindowLayout extends VBox {
             targetLayer.getChildren().add(window);
             count++;
         }
+    }
+
+    public void removeWindow(int index) {
+        // todo: actually impl remove logic
+        HBox layer = layers.get(0);
+        layer.getChildren().remove(0);
+        count--;
     }
 
     private HBox getCurrentLayer() {
@@ -54,7 +59,7 @@ public class WindowLayout extends VBox {
 
     public boolean isFull() {
         if(layers.size() == MAX_LAYERS) {
-            return !isLayerFull(layers.size() - 1);
+            return isLayerFull(layers.size() - 1);
         }
         return false;
     }

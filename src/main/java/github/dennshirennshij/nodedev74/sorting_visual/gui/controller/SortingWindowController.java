@@ -1,18 +1,19 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
-import github.dennshirennshij.nodedev74.sorting_visual.event.WindowSelectedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowIndexUpdateEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowSelectedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmFinishedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmInitEvent;
-import github.dennshirennshij.nodedev74.sorting_visual.event.CheckCountChangeEvent;
-import github.dennshirennshij.nodedev74.sorting_visual.event.SwapCountChangedEvent;
-import github.dennshirennshij.nodedev74.sorting_visual.gui.node.*;
+import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.CheckCountChangeEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.SwapCountChangedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowStateChangedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
-import javafx.stage.Stage;
 
 public class SortingWindowController {
 
@@ -34,7 +35,7 @@ public class SortingWindowController {
     private TimerControl timer;
 
     @FXML
-    private Button syncButton;
+    private Button closeButton;
 
     /* Center Controls */
     @FXML
@@ -64,6 +65,34 @@ public class SortingWindowController {
 
         sortingWindow.addEventHandler(AlgorithmFinishedEvent.EVENT_TYPE, this::algorithmFinished);
         sortingWindow.addEventHandler(AlgorithmInitEvent.EVENT_TYPE, this::algorithmSpecified);
+
+        sortingWindow.addEventHandler(WindowStateChangedEvent.EVENT_TYPE, this::windowStateChanged);
+        sortingWindow.addEventHandler(WindowIndexUpdateEvent.EVENT_TYPE, this::windowIndexUpdate);
+    }
+
+    public void windowStateChanged(WindowStateChangedEvent evt) {
+        if(evt.getNewState() == SortingWindow.WindowState.RUNNING) {
+            closeButton.setDisable(true);
+        }
+
+        if(evt.getNewState() == SortingWindow.WindowState.STOPPED) {
+            closeButton.setDisable(false);
+        }
+
+        if(evt.getNewState() == SortingWindow.WindowState.FINISHED) {
+            closeButton.setDisable(false);
+        }
+    }
+
+    public void windowIndexUpdate(WindowIndexUpdateEvent evt) {
+        int removedIndex = evt.getRemovedIndex();
+        int currentIndex = sortingWindow.getIndex();
+
+        if(currentIndex > removedIndex) {
+            sortingWindow.setIndex(--currentIndex);
+        } else {
+            sortingWindow.setIndex(++currentIndex);
+        }
     }
 
     /* Start logic */
@@ -93,24 +122,19 @@ public class SortingWindowController {
     @FXML
     public void PauseButtonAction() {
         sortingWindow.togglePause();
-
-        if(sortingWindow.isPaused()) {
-            pauseButton.setText("Resume");
-        } else if(sortingWindow.isRunning()) {
-            pauseButton.setText("Pause");
-        }
     }
 
     /* Stop logic */
     @FXML
     public void StopButtonAction() {
-        sortingWindow.setCurrentWindowState(SortingWindow.WindowState.STOPPED); // todo: add closing option later
+        sortingWindow.setCurrentWindowState(SortingWindow.WindowState.STOPPED);
     }
 
     /* Sync logic */
     @FXML
-    public void SyncButtonAction() {
-
+    public void CloseButtonAction() {
+        sortingWindow.killTask();
+        sortingWindow.destroy();
     }
 
     /* Counter logic */
@@ -128,7 +152,6 @@ public class SortingWindowController {
     }
 
     public void algorithmFinished(AlgorithmFinishedEvent evt) {
-        System.out.println("stopped!!!");
         timer.stop();
     }
 

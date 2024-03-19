@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import github.dennshirennshij.nodedev74.sorting_visual.gui.node.SortingWindow?>
-<?import github.dennshirennshij.nodedev74.sorting_visual.gui.node.SortingDisplay?>
-<?import github.dennshirennshij.nodedev74.sorting_visual.gui.node.TimerControl?>
+<?import github.dennshirennshij.nodedev74.sorting_visual.gui.view.SortingWindow?>
+<?import github.dennshirennshij.nodedev74.sorting_visual.gui.view.SortingDisplay?>
+<?import github.dennshirennshij.nodedev74.sorting_visual.gui.view.TimerControl?>
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.BorderPane?>
@@ -30,7 +30,7 @@
                 <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
                 <Label fx:id="algorithmName" text="null" />
                 <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
-                <Button fx:id="syncButton" onAction="#SyncButtonAction" text="Sync" />
+                <Button fx:id="closeButton" onAction="#CloseButtonAction" text="Close" />
             </ToolBar>
         </top>
         <center>
