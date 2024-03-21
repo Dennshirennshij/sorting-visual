@@ -12,6 +12,7 @@ public class MainWindowTest {
     void run() {
         AlgorithmLoader.getInstance().registerClass(BubblesortTest.class);
         AlgorithmLoader.getInstance().registerClass(QuicksortTest.class);
+        AlgorithmLoader.getInstance().registerClass(MergesortTesting.class);
         Application.launch(App.class);
     }
 }
