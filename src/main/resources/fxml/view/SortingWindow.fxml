@@ -23,12 +23,12 @@
          fx:controller="github.dennshirennshij.nodedev74.sorting_visual.gui.controller.SortingWindowController"
          onMouseClicked="#selectWindow"
          xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-    <BorderPane stylesheets="@../../css/input-tab.css" prefHeight="-Infinity" prefWidth="-Infinity" SortingWindow.hgrow="ALWAYS">
+    <BorderPane prefHeight="-Infinity" prefWidth="-Infinity" SortingWindow.hgrow="ALWAYS">
         <top>
             <ToolBar>
                 <Label fx:id="checkoutCounter" text="Checks: 0"/>
-                <Label fx:id="swapCounter" text="Swaps: 0" />
-                <TimerControl fx:id="timer" text="0" />
+                <Label fx:id="swapCounter" text="Trades: 0" />
+                <TimerControl fx:id="timer" text="Time: 0" />
                 <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
                 <Label fx:id="algorithmName" text="null" />
                 <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />

@@ -30,7 +30,7 @@ public class TimerControl extends Label {
                     long time = (System.currentTimeMillis()) - startTime;
                     Date date = new Date(time);
 
-                    Platform.runLater(() -> setText((date.getHours() - 1) + ":" + date.getMinutes() + ":" + date.getSeconds()));
+                    Platform.runLater(() -> setText("Time: " + (date.getHours() - 1) + ":" + date.getMinutes() + ":" + date.getSeconds()));
                 }
             }
         };
