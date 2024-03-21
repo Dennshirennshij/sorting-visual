@@ -13,18 +13,20 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
+<?import javafx.scene.control.Separator?>
 <fx:root type="github.dennshirennshij.nodedev74.sorting_visual.gui.view.input.InputTab"
          fx:id="inputTab"
          fx:controller="github.dennshirennshij.nodedev74.sorting_visual.gui.controller.InputTabController"
          xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <GridPane minWidth="-Infinity" maxHeight="150.0">
+    <GridPane minWidth="-Infinity" minHeight="55.0">
         <columnConstraints>
             <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="100.0" />
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="120.0" prefWidth="120.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="200.0" prefWidth="200.0" />
         </columnConstraints>
         <children>
             <HBox>
-                <TextArea maxHeight="50.0" maxWidth="-Infinity" fx:id="arrayInput" />
+                <Separator />
+                <TextArea maxHeight="45.0" maxWidth="-Infinity" fx:id="arrayInput" />
                 <Button fx:id="emptyInput" onAction="#clearInput">
                     <graphic>
                         <ImageView fitHeight="16.0" preserveRatio="true">

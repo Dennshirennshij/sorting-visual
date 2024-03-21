@@ -54,7 +54,6 @@
                     </graphic>
                 </Button>
                 <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
-                <Button fx:id="skipBackwards" />
                 <SplitMenuButton fx:id="speedSetter" text="1x">
                     <items>
                         <MenuItem id="0.25" onAction="#SpeedChange" text="0.25x" />
@@ -66,7 +65,6 @@
                         <MenuItem id="100" onAction="#SpeedChange" text="100x" />
                     </items>
                 </SplitMenuButton>
-                <Button fx:id="skipForwards" text=">" />
                 <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
                 <Button fx:id="pauseButton" disable="true" onAction="#PauseButtonAction">
                     <graphic>

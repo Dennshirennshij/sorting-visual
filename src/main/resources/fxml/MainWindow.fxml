@@ -15,7 +15,7 @@
 
 <fx:root type="github.dennshirennshij.nodedev74.sorting_visual.gui.view.MainWindow"
          minWidth="800.0" minHeight="650.0"
-         stylesheets="@../css/style.css"
+         stylesheets="@../css/style.css,@../css/main-window.css"
          fx:id="Root"
          fx:controller="github.dennshirennshij.nodedev74.sorting_visual.gui.controller.MainWindowController"
          xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
@@ -37,6 +37,6 @@
        <WindowLayout fx:id="tilePane" minWidth="-Infinity" minHeight="-Infinity" />
    </center>
     <bottom>
-        <InputHandler maxHeight="150.0" minWidth="-Infinity" fx:id="inputHandler" />
+        <InputHandler minHeight="55.0" minWidth="-Infinity" fx:id="inputHandler" />
     </bottom>
 </fx:root>

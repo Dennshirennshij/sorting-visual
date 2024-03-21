@@ -2,3 +2,7 @@
     -fx-background-color: transparent;
     -fx-border: none;
 }
+
+.separator {
+    -fx-opacity: 0.0;
+}
