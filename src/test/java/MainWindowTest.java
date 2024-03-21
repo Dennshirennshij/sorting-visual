@@ -11,6 +11,7 @@ public class MainWindowTest {
     @Test
     void run() {
         AlgorithmLoader.getInstance().registerClass(BubblesortTest.class);
+        AlgorithmLoader.getInstance().registerClass(QuicksortTest.class);
         Application.launch(App.class);
     }
 }
