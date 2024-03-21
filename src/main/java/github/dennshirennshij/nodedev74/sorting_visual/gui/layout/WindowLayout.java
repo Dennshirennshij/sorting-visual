@@ -1,6 +1,6 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.layout;
 
-import github.dennshirennshij.nodedev74.sorting_visual.gui.view.SortingWindow;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting.SortingWindow;
 import javafx.scene.layout.*;
 
 import java.util.ArrayList;

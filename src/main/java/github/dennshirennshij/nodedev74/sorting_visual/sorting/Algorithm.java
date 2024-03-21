@@ -1,6 +1,6 @@
 package github.dennshirennshij.nodedev74.sorting_visual.sorting;
 
-import github.dennshirennshij.nodedev74.sorting_visual.gui.view.SortingWindow;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting.SortingWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;

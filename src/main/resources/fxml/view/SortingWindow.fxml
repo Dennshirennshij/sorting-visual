@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import github.dennshirennshij.nodedev74.sorting_visual.gui.view.SortingWindow?>
-<?import github.dennshirennshij.nodedev74.sorting_visual.gui.view.SortingDisplay?>
+<?import github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting.SortingWindow?>
+<?import github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting.SortingDisplay?>
 <?import github.dennshirennshij.nodedev74.sorting_visual.gui.view.TimerControl?>
 
 <?import javafx.scene.layout.HBox?>
@@ -15,13 +15,15 @@
 <?import javafx.scene.control.MenuItem?>
 
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <fx:root type="SortingWindow"
-         minHeight="400.0" minWidth="200.0" prefWidth="-Infinity" prefHeight="-Infinity"
+         minHeight="350.0" minWidth="250.0" prefWidth="-Infinity" prefHeight="-Infinity"
          fx:id="sortingWindow"
          fx:controller="github.dennshirennshij.nodedev74.sorting_visual.gui.controller.SortingWindowController"
          onMouseClicked="#selectWindow"
          xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-    <BorderPane minHeight="-Infinity" minWidth="-Infinity" SortingWindow.hgrow="ALWAYS">
+    <BorderPane stylesheets="@../../css/input-tab.css" prefHeight="-Infinity" prefWidth="-Infinity" SortingWindow.hgrow="ALWAYS">
         <top>
             <ToolBar>
                 <Label fx:id="checkoutCounter" text="Checks: 0"/>
@@ -30,7 +32,13 @@
                 <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
                 <Label fx:id="algorithmName" text="null" />
                 <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
-                <Button fx:id="closeButton" onAction="#CloseButtonAction" text="Close" />
+                <Button fx:id="closeButton" onAction="#CloseButtonAction">
+                    <graphic>
+                        <ImageView fitHeight="16.0" preserveRatio="true">
+                            <Image url="@../../assets/icon/close-48x48.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
             </ToolBar>
         </top>
         <center>
@@ -38,8 +46,15 @@
         </center>
         <bottom>
             <ToolBar>
-                <Button fx:id="startButton" onAction="#StartButtonAction" text="Start" />
+                <Button fx:id="startButton" onAction="#StartButtonAction">
+                    <graphic>
+                        <ImageView fitHeight="32.0" preserveRatio="true">
+                            <Image url="@../../assets/icon/play-48x48.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
                 <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
+                <Button fx:id="skipBackwards" />
                 <SplitMenuButton fx:id="speedSetter" text="1x">
                     <items>
                         <MenuItem id="0.25" onAction="#SpeedChange" text="0.25x" />
@@ -51,9 +66,22 @@
                         <MenuItem id="100" onAction="#SpeedChange" text="100x" />
                     </items>
                 </SplitMenuButton>
+                <Button fx:id="skipForwards" text=">" />
                 <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
-                <Button fx:id="pauseButton" onAction="#PauseButtonAction" text="Pause" />
-                <Button fx:id="stopButton" onAction="#StopButtonAction" text="Stop" />
+                <Button fx:id="pauseButton" disable="true" onAction="#PauseButtonAction">
+                    <graphic>
+                        <ImageView fx:id="pauseIcon" fitHeight="32.0" preserveRatio="true">
+                            <Image url="@../../assets/icon/pause-50x50.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="stopButton" disable="true" onAction="#StopButtonAction">
+                    <graphic>
+                        <ImageView fitHeight="32.0" preserveRatio="true">
+                            <Image url="@../../assets/icon/stop-32x32.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
             </ToolBar>
         </bottom>
     </BorderPane>

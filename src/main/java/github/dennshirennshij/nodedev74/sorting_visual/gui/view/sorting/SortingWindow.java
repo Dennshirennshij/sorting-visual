@@ -1,4 +1,4 @@
-package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
+package github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting;
 
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmFinishedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmInitEvent;
@@ -7,6 +7,8 @@ import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.SwapCountCh
 import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowIndexUpdateEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowRemovedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowStateChangedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.MainWindow;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.input.InputHandler;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 
 import javafx.application.Platform;
@@ -37,12 +39,12 @@ public class SortingWindow extends HBox {
 
     public SortingWindow() {
         try {
-            URL file = getClass().getClassLoader().getResource("fxml/element/SortingWindow.fxml");
+            URL file = getClass().getClassLoader().getResource("fxml/view/SortingWindow.fxml");
             FXMLLoader loader = new FXMLLoader(file);
             loader.setRoot(this);
             loader.load();
         } catch(Exception e) {
-            System.out.println("Couldnt load fxml");
+            System.out.println("Couldnt load fxml " + e.getMessage());
         }
     }
     public SortingWindow(Class<? extends Algorithm> algorithm, int index) {
@@ -158,7 +160,7 @@ public class SortingWindow extends HBox {
     }
 
     public void removeVisualList(int listIndex) {
-        System.out.println("Remove visual list " + listIndex);
+        Platform.runLater(() -> display.removeVisualList(listIndex));
     }
 
     public void getArray(int listIndex) {

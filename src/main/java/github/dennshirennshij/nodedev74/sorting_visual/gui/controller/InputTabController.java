@@ -1,7 +1,7 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
 import github.dennshirennshij.nodedev74.sorting_visual.exception.IncorrectArraySyntax;
-import github.dennshirennshij.nodedev74.sorting_visual.gui.view.InputTab;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.input.InputTab;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -30,6 +30,11 @@ public class InputTabController {
     @FXML
     public void initialize() {
         arrayInput.textProperty().addListener(((observableValue, oldValue, newValue) -> arrayInputChanged(newValue)));
+    }
+
+    @FXML
+    public void clearInput() {
+        arrayInput.clear();
     }
 
     public void arrayInputChanged(String newValue) {

@@ -1,4 +1,4 @@
-package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
+package github.dennshirennshij.nodedev74.sorting_visual.gui.view.input;
 
 import javafx.scene.control.TabPane;
 

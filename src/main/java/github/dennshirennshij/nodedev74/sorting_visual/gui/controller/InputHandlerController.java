@@ -1,6 +1,6 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
-import github.dennshirennshij.nodedev74.sorting_visual.gui.view.InputHandler;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.input.InputHandler;
 import javafx.fxml.FXML;
 
 public class InputHandlerController {

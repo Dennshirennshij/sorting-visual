@@ -8,6 +8,9 @@ import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.CheckCountC
 import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.SwapCountChangedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowStateChangedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.view.*;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.input.InputHandler;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting.SortingDisplay;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting.SortingWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -46,6 +49,12 @@ public class SortingWindowController {
     private Button startButton;
 
     @FXML
+    public Button skipBackwards;
+
+    @FXML
+    public Button skipForwards;
+
+    @FXML
     private SplitMenuButton speedSetter;
 
     @FXML
@@ -72,22 +81,28 @@ public class SortingWindowController {
 
     public void windowStateChanged(WindowStateChangedEvent evt) {
         if(evt.getNewState() == SortingWindow.WindowState.RUNNING) {
-            pauseButton.setText("Pause");
+            pauseButton.setDisable(false);
+            stopButton.setDisable(false);
             startButton.setDisable(true);
             closeButton.setDisable(true);
         }
 
         if(evt.getNewState() == SortingWindow.WindowState.PAUSED) {
-            pauseButton.setText("Resume");
+            pauseButton.setDisable(true);
+            startButton.setDisable(false);
         }
 
         if(evt.getNewState() == SortingWindow.WindowState.STOPPED) {
             closeButton.setDisable(false);
             pauseButton.setDisable(true);
+            skipForwards.setDisable(true);
+            skipBackwards.setDisable(true);
         }
 
         if(evt.getNewState() == SortingWindow.WindowState.FINISHED) {
             closeButton.setDisable(false);
+            pauseButton.setDisable(true);
+            stopButton.setDisable(true);
         }
     }
 
@@ -105,13 +120,17 @@ public class SortingWindowController {
     /* Start logic */
     @FXML
     public void StartButtonAction() {
-        int index = sortingWindow.getIndex();
-        InputHandler handler = (InputHandler) sortingWindow.getScene().lookup("#inputHandler");
-        if(handler.hasValidInput(index)) {
-            sortingWindow.start(handler.getInputArray(index));
-            timer.start();
+        if(!sortingWindow.isPaused()) {
+            int index = sortingWindow.getIndex();
+            InputHandler handler = (InputHandler) sortingWindow.getScene().lookup("#inputHandler");
+            if (handler.hasValidInput(index)) {
+                sortingWindow.start(handler.getInputArray(index));
+                timer.start();
+            } else {
+                // todo: make visually clear that a valid input is required
+            }
         } else {
-            // todo: make visually clear that a valid input is required
+            sortingWindow.togglePause();
         }
     }
 

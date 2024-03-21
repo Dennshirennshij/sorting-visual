@@ -10,11 +10,14 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Sorting visual");
 
-        // Create an example SortingWindow
         MainWindow window = new MainWindow();
-        primaryStage.setScene(new Scene(window));
+        Scene scene = new Scene(window);
 
+        primaryStage.setScene(scene);
+        primaryStage.sizeToScene();
         primaryStage.show();
+        primaryStage.setMinWidth(primaryStage.getWidth());
+        primaryStage.setMinHeight(primaryStage.getHeight());
     }
 
     @Override

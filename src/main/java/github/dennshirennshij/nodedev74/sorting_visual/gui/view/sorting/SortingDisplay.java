@@ -1,4 +1,4 @@
-package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
+package github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting;
 
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -44,5 +44,10 @@ public class SortingDisplay extends BarChart<String, Number> {
         }
 
         getData().add(series);
+    }
+
+    public void removeVisualList(int listIndex) {
+        dataset.remove(listIndex);
+        getData().remove(listIndex);
     }
 }

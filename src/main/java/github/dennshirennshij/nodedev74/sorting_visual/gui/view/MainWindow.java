@@ -2,6 +2,7 @@ package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
 
 import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowCreatedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.layout.WindowLayout;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting.SortingWindow;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;

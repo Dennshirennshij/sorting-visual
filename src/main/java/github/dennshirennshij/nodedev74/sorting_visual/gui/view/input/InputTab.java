@@ -1,4 +1,4 @@
-package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
+package github.dennshirennshij.nodedev74.sorting_visual.gui.view.input;
 
 import github.dennshirennshij.nodedev74.sorting_visual.exception.IncorrectArraySyntax;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ public class InputTab extends Tab {
 
     public InputTab() {
         try {
-            URL file = getClass().getClassLoader().getResource("fxml/element/InputTab.fxml");
+            URL file = getClass().getClassLoader().getResource("fxml/view/InputTab.fxml");
             FXMLLoader loader = new FXMLLoader(file);
             loader.setRoot(this);
             loader.load();
