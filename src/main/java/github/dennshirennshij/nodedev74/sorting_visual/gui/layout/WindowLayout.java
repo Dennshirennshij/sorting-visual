@@ -54,7 +54,7 @@ public class WindowLayout extends VBox {
     }
 
     public boolean isLayerFull(int index) {
-        return layers.get(index).getChildrenUnmodifiable().size() == MAX_LAYERS;
+        return layers.get(index).getChildrenUnmodifiable().size() == MAX_LAYER_NODES;
     }
 
     public boolean isFull() {

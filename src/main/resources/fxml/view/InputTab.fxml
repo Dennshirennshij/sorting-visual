@@ -12,7 +12,8 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<fx:root type="InputTab"
+
+<fx:root type="github.dennshirennshij.nodedev74.sorting_visual.gui.view.input.InputTab"
          fx:id="inputTab"
          fx:controller="github.dennshirennshij.nodedev74.sorting_visual.gui.controller.InputTabController"
          xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
@@ -45,7 +46,13 @@
                     <Label text="Anzahl"/>
                     <TextField fx:id="sizeValue" />
                 </VBox>
-                <Button fx:id="randomArray" text="Random" onAction="#randomGenerator"/>
+                <Button fx:id="randomArray" onAction="#randomGenerator">
+                    <graphic>
+                        <ImageView fitHeight="24.0" preserveRatio="true">
+                            <Image url="@../../assets/icon/random-32x32.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
             </HBox>
         </children>
     </GridPane>
