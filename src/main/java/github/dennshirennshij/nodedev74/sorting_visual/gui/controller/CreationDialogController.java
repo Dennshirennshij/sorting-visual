@@ -1,7 +1,7 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
-import github.dennshirennshij.nodedev74.sorting_visual.event.CreationAppliedEvent;
-import github.dennshirennshij.nodedev74.sorting_visual.gui.node.CreationDialog;
+import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.CreationAppliedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.CreationDialog;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.AlgorithmLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

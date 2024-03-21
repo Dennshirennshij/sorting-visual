@@ -1,7 +1,7 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
 import github.dennshirennshij.nodedev74.sorting_visual.exception.IncorrectArraySyntax;
-import github.dennshirennshij.nodedev74.sorting_visual.gui.node.InputTab;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.InputTab;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;

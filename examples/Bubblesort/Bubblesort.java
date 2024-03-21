@@ -1,4 +1,4 @@
-import github.dennshirennshij.nodedev74.sorting_visual.gui.node.SortingWindow;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.SortingWindow;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 
 public class Bubblesort extends Algorithm {

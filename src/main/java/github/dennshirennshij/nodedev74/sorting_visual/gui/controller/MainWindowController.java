@@ -1,16 +1,15 @@
 package github.dennshirennshij.nodedev74.sorting_visual.gui.controller;
 
-import github.dennshirennshij.nodedev74.sorting_visual.event.CreationAppliedEvent;
-import github.dennshirennshij.nodedev74.sorting_visual.event.CreationSuccess;
-import github.dennshirennshij.nodedev74.sorting_visual.event.WindowSelectedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.CreationAppliedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowCreatedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowRemovedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowSelectedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.layout.WindowLayout;
-import github.dennshirennshij.nodedev74.sorting_visual.gui.node.CreationDialog;
-import github.dennshirennshij.nodedev74.sorting_visual.gui.node.InputHandler;
-import github.dennshirennshij.nodedev74.sorting_visual.gui.node.MainWindow;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.CreationDialog;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.InputHandler;
+import github.dennshirennshij.nodedev74.sorting_visual.gui.view.MainWindow;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.AlgorithmLoader;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
@@ -38,8 +37,9 @@ public class MainWindowController {
 
     @FXML
     public void initialize() {
-        Root.addEventHandler(CreationSuccess.EVENT_TYPE, this::creationOk);
+        Root.addEventHandler(WindowCreatedEvent.EVENT_TYPE, this::creationOk);
         Root.addEventHandler(WindowSelectedEvent.EVENT_TYPE, this::newWindowSelected);
+        Root.addEventHandler(WindowRemovedEvent.EVENT_TYPE, this::windowRemoved);
     }
 
     @FXML
@@ -56,12 +56,12 @@ public class MainWindowController {
         currentDialog.show();
     }
 
-    public void creationOk(CreationSuccess evt) {
+    public void creationOk(WindowCreatedEvent evt) {
         if(tilePane.isFull()) {
             addWindowButton.setDisable(true);
         }
         windowCounter.setText(tilePane.countWindows() + "/" + tilePane.MAX_LAYERS * tilePane.MAX_LAYER_NODES);
-        inputHandler.addNewHandler();
+        inputHandler.addHandler();
 
         currentDialog.setResult(Boolean.TRUE);
         currentDialog.close();
@@ -72,6 +72,10 @@ public class MainWindowController {
         Class<?extends Algorithm> algo = loader.getAlgorithmClassByName(evt.getAlgorithm());
 
         Root.createSortingWindowTile(algo);
+    }
+
+    public void windowRemoved(WindowRemovedEvent evt) {
+        windowCounter.setText(tilePane.countWindows() + "/" + tilePane.MAX_LAYERS * tilePane.MAX_LAYER_NODES);
     }
 
     public void newWindowSelected(WindowSelectedEvent evt) {

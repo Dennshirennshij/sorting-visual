@@ -1,10 +1,6 @@
-package github.dennshirennshij.nodedev74.sorting_visual.gui.node;
+package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-
-import java.net.URL;
 
 public class InputHandler extends TabPane {
 
@@ -12,10 +8,14 @@ public class InputHandler extends TabPane {
         getStylesheets().add("css/input-handler.css");
     }
 
-    public void addNewHandler() {
+    public void addHandler() {
         InputTab tab = new InputTab();
         getTabs().add(tab);
         setSelectedWindow(getTabs().size() - 1);
+    }
+
+    public void removeHandler(int index) {
+        getTabs().remove(index);
     }
 
     public void setSelectedWindow(int index) {

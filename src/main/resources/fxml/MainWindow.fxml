@@ -7,9 +7,9 @@
 <?import javafx.scene.control.ToolBar?>
 
 <?import github.dennshirennshij.nodedev74.sorting_visual.gui.layout.WindowLayout?>
-<?import github.dennshirennshij.nodedev74.sorting_visual.gui.node.InputHandler?>
+<?import github.dennshirennshij.nodedev74.sorting_visual.gui.view.InputHandler?>
 
-<fx:root type="github.dennshirennshij.nodedev74.sorting_visual.gui.node.MainWindow"
+<fx:root type="github.dennshirennshij.nodedev74.sorting_visual.gui.view.MainWindow"
          maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
          prefHeight="600.0" prefWidth="1200.0"
          fx:id="Root"

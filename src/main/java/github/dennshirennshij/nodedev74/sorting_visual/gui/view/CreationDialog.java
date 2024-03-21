@@ -1,4 +1,4 @@
-package github.dennshirennshij.nodedev74.sorting_visual.gui.node;
+package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.DialogPane;

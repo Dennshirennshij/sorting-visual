@@ -1,4 +1,4 @@
-package github.dennshirennshij.nodedev74.sorting_visual.event;
+package github.dennshirennshij.nodedev74.sorting_visual.event.window;
 
 import javafx.event.Event;
 import javafx.event.EventType;

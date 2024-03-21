@@ -1,4 +1,4 @@
-package github.dennshirennshij.nodedev74.sorting_visual.gui.node;
+package github.dennshirennshij.nodedev74.sorting_visual.gui.view;
 
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
