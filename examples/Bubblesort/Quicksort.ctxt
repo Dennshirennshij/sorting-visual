@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Quicksort
+comment1.params=window
+comment1.target=Quicksort(github.dennshirennshij.nodedev74.sorting_visual.gui.node.SortingWindow)
+comment2.params=
+comment2.target=Quicksort()
+comment3.params=elements
+comment3.target=void\ start(int[])
+comment4.params=listI\ low\ high
+comment4.target=int\ partition(int,\ int,\ int)
+comment5.params=listI\ low\ high
+comment5.target=void\ sort(int,\ int,\ int)
+comment5.text=\ The\ main\ function\ that\ implements\ QuickSort()\n\ \ \ \ \ \ arr[]\ -->\ Array\ to\ be\ sorted,\n\ \ \ \ \ \ low\ \ -->\ Starting\ index,\nhigh\ \ -->\ Ending\ index
+comment6.params=
+comment6.target=java.lang.String\ getName()
+numComments=7
