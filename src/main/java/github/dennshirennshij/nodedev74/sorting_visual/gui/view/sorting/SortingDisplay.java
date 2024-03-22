@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SortingDisplay extends BarChart<String, Number> {
 
-    private ArrayList<List<Integer>> dataset;
+    private final ArrayList<List<Integer>> dataset;
 
     public SortingDisplay() {
         super(new CategoryAxis(), new NumberAxis());
