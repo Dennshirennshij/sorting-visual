@@ -57,12 +57,12 @@ public class MainWindowController {
         inputHandler.addHandler();
 
         updateWindowCreateButton();
-        windowCounter.setText(tilePane.countWindows() + "/" + tilePane.MAX_LAYERS * tilePane.MAX_LAYER_NODES);
+        windowCounter.setText(tilePane.countWindows() + "/" + WindowLayout.MAX_LAYERS * WindowLayout.MAX_LAYER_NODES);
     }
 
     public void windowRemoved(WindowRemovedEvent evt) {
         updateWindowCreateButton();
-        windowCounter.setText(tilePane.countWindows() + "/" + tilePane.MAX_LAYERS * tilePane.MAX_LAYER_NODES);
+        windowCounter.setText(tilePane.countWindows() + "/" + WindowLayout.MAX_LAYERS * WindowLayout.MAX_LAYER_NODES);
     }
 
     public void newWindowSelected(WindowSelectedEvent evt) {
