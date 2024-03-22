@@ -125,14 +125,14 @@ public class SortingWindow extends HBox {
 
     public void trade(int listIndex) {
         Platform.runLater(() -> {
-            display.renderChanges(listIndex);
+            display.renderListChanges(listIndex);
             fireEvent(new ChangesCountChangedEvent(++swapCounter));
         });
     }
 
     public void set(int listIndex) {
         Platform.runLater(() -> {
-            display.renderChanges(listIndex);
+            display.renderListChanges(listIndex);
             fireEvent(new ChangesCountChangedEvent(++swapCounter));
         });
     }

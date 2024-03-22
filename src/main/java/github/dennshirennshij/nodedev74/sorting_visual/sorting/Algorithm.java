@@ -5,6 +5,7 @@ import github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting.SortingW
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 
@@ -12,6 +13,8 @@ public abstract class Algorithm {
     private final SortingWindow window;
 
     private ArrayList<List<Integer>> visualLists;
+
+    private ArrayList<AtomicInteger> visualIndexes;
 
     public abstract void start (int[] elements);
 
@@ -38,6 +41,10 @@ public abstract class Algorithm {
         window.cooldown();
 
         return this.visualLists.size() - 1;
+    }
+
+    protected void addVisualIndex(int index, int value) {
+
     }
 
     protected void removeVisualList (int listIndex) {
