@@ -95,8 +95,6 @@ public class SortingWindowController {
         if(evt.getNewState() == SortingWindow.WindowState.STOPPED) {
             closeButton.setDisable(false);
             pauseButton.setDisable(true);
-            skipForwards.setDisable(true);
-            skipBackwards.setDisable(true);
         }
 
         if(evt.getNewState() == SortingWindow.WindowState.FINISHED) {

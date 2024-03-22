@@ -27,7 +27,8 @@ public class SortingDisplay extends BarChart<String, Number> {
         BarChart.Series<String, Number> series = new BarChart.Series<>();
 
         for(int i = 0; i < data.size(); i++) {
-            series.getData().add(new BarChart.Data<>(String.valueOf(i), (Number) data.get(i)));
+            String category = (listIndex != 0) ? listIndex + "." + String.valueOf(i) : String.valueOf(i);
+            series.getData().add(new BarChart.Data<>(category, (Number) data.get(i)));
         }
 
         dataset.set(listIndex, data);
@@ -40,10 +41,11 @@ public class SortingDisplay extends BarChart<String, Number> {
         BarChart.Series<String, Number> series = new BarChart.Series<>();
 
         for(int i = 0; i < list.size(); i++) {
-            series.getData().add(new BarChart.Data<>(String.valueOf(i), (Number) list.get(i)));
+            String category = (dataset.size() > 1) ? (dataset.size() - 1) + "." + String.valueOf(i) : String.valueOf(i);
+            series.getData().add(new BarChart.Data<>(category, (Number) list.get(i)));
         }
 
-        getData().add(series);
+        getData().add(dataset.size() - 1, series);
     }
 
     public void removeVisualList(int listIndex) {
