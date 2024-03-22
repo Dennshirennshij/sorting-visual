@@ -3,7 +3,7 @@ package github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting;
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmFinishedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmInitEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.CheckCountChangeEvent;
-import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.SwapCountChangedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.ChangesCountChangedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowIndexUpdateEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowRemovedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowStateChangedEvent;
@@ -123,22 +123,22 @@ public class SortingWindow extends HBox {
 
     /* Interface from Algorithm */
 
-    public void trade(int listIndex, int i1, int i2) {
+    public void trade(int listIndex) {
         Platform.runLater(() -> {
-            System.out.println("Trade " + i1 + " with " + i2 + " in list " + listIndex);
-            display.swap(listIndex, i1, i2);
-            fireEvent(new SwapCountChangedEvent(++swapCounter));
+            display.renderChanges(listIndex);
+            fireEvent(new ChangesCountChangedEvent(++swapCounter));
         });
     }
 
-    public void set(int listIndex, int index, int value) {
-        System.out.println("Set " + value + " at " + index + " in list " + listIndex);
+    public void set(int listIndex) {
+        Platform.runLater(() -> {
+            display.renderChanges(listIndex);
+            fireEvent(new ChangesCountChangedEvent(++swapCounter));
+        });
     }
 
     public void get(int listIndex, int index) {
         Platform.runLater(() -> {
-            System.out.println("Get " + index + " in list " + listIndex);
-
             fireEvent(new CheckCountChangeEvent(++checkCount));
         });
     }
@@ -155,16 +155,8 @@ public class SortingWindow extends HBox {
         Platform.runLater(() -> display.addVisualList(visualList));
     }
 
-    public void getLength(int listIndex) {
-        System.out.println("Get length of list " + listIndex);
-    }
-
     public void removeVisualList(int listIndex) {
         Platform.runLater(() -> display.removeVisualList(listIndex));
-    }
-
-    public void getArray(int listIndex) {
-        System.out.println("Get array of list " + listIndex);
     }
 
 

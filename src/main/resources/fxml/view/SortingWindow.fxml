@@ -27,7 +27,7 @@
         <top>
             <ToolBar>
                 <Label fx:id="checkoutCounter" text="Checks: 0"/>
-                <Label fx:id="swapCounter" text="Trades: 0" />
+                <Label fx:id="swapCounter" text="Changes: 0" />
                 <TimerControl fx:id="timer" text="Time: 0" />
                 <HBox HBox.hgrow="ALWAYS" minWidth="-Infinity" />
                 <Label fx:id="algorithmName" text="null" />

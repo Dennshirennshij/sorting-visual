@@ -3,12 +3,12 @@ package github.dennshirennshij.nodedev74.sorting_visual.event.deliver;
 import javafx.event.Event;
 import javafx.event.EventType;
 
-public class SwapCountChangedEvent extends Event {
+public class ChangesCountChangedEvent extends Event {
 
-    public static final EventType<SwapCountChangedEvent> EVENT_TYPE = new EventType<>(Event.ANY,"SwapCountChange");
+    public static final EventType<ChangesCountChangedEvent> EVENT_TYPE = new EventType<>(Event.ANY,"SwapCountChange");
     private int value;
 
-    public SwapCountChangedEvent(int newValue) {
+    public ChangesCountChangedEvent(int newValue) {
         super(EVENT_TYPE);
 
         this.value = newValue;

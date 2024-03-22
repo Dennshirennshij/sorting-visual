@@ -9,6 +9,7 @@ import java.util.List;
 
 public class SortingDisplay extends BarChart<String, Number> {
 
+    // Contains references to the Lists in the Algorithm object
     private final ArrayList<List<Integer>> dataset;
 
     public SortingDisplay() {
@@ -20,7 +21,7 @@ public class SortingDisplay extends BarChart<String, Number> {
         dataset = new ArrayList<>();
     }
 
-    public void swap(int listIndex, int i1, int i2) {
+    public void renderChanges(int listIndex) {
         List<Integer> data = dataset.get(listIndex);
 
         // Fill series

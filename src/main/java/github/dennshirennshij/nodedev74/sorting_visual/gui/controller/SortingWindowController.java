@@ -5,7 +5,7 @@ import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowSelect
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmFinishedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.algorithm.AlgorithmInitEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.CheckCountChangeEvent;
-import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.SwapCountChangedEvent;
+import github.dennshirennshij.nodedev74.sorting_visual.event.deliver.ChangesCountChangedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.event.window.WindowStateChangedEvent;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.view.*;
 import github.dennshirennshij.nodedev74.sorting_visual.gui.view.input.InputHandler;
@@ -69,7 +69,7 @@ public class SortingWindowController {
 
         /* Register communication events */
 
-        sortingWindow.addEventHandler(SwapCountChangedEvent.EVENT_TYPE, this::updateSwapCounter);
+        sortingWindow.addEventHandler(ChangesCountChangedEvent.EVENT_TYPE, this::updateSwapCounter);
         sortingWindow.addEventHandler(CheckCountChangeEvent.EVENT_TYPE, this::updateCheckCounter);
 
         sortingWindow.addEventHandler(AlgorithmFinishedEvent.EVENT_TYPE, this::algorithmFinished);
@@ -167,8 +167,8 @@ public class SortingWindowController {
 
     /* Counter logic */
 
-    public void updateSwapCounter(SwapCountChangedEvent evt) {
-        swapCounter.setText("Swaps: " + evt.getValue());
+    public void updateSwapCounter(ChangesCountChangedEvent evt) {
+        swapCounter.setText("Changes: " + evt.getValue());
     }
 
     public void updateCheckCounter(CheckCountChangeEvent evt) {

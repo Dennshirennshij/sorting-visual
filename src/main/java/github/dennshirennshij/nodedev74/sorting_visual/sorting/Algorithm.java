@@ -29,10 +29,12 @@ public abstract class Algorithm {
     protected int addVisualList () {
         while (window.isHalted());
 
+        // Add a empty List to Algorithm object
         List<Integer> visualList = new ArrayList<>();
-
-        window.addVisualList(visualList);
         this.visualLists.add(visualList);
+
+        // Pass information to SortingWindow
+        window.addVisualList(visualList);
         window.cooldown();
 
         return this.visualLists.size() - 1;
@@ -41,37 +43,40 @@ public abstract class Algorithm {
     protected void removeVisualList (int listIndex) {
         while (window.isHalted());
 
-        window.removeVisualList(listIndex);
+        // Remove List from Algorithm object
         this.visualLists.remove(listIndex);
+
+        // Pass information to SortingWindow
+        window.removeVisualList(listIndex);
         window.cooldown();
     }
     protected int addVisualList (int[] elements) {
         while (window.isHalted());
 
+        // Create a List in Algorithm object
         List<Integer> visualList = Arrays.stream(elements).boxed().collect(Collectors.toList());
-
-        window.addVisualList(visualList);
         this.visualLists.add(visualList);
+
+        // Pass information to SortingWindow
+        window.addVisualList(visualList);
         window.cooldown();
 
         return this.visualLists.size() - 1;
     }
 
     protected int getLength (int listIndex) {
-        while (window.isHalted());
+        while(window.isHalted());
 
-        window.getLength(listIndex);
+        //Pass information to SortingWindow
         window.cooldown();
 
         return this.visualLists.get(listIndex).size();
     }
 
     protected void trade (int listIndex, int i1, int i2) {
-        while (window.isHalted());
+        while(window.isHalted());
 
-        window.trade(listIndex, i1, i2);
-        window.cooldown();
-
+        // Trade given numbers
         List<Integer> list = this.visualLists.get(listIndex);
 
         int old = list.get(i1);
@@ -79,12 +84,22 @@ public abstract class Algorithm {
         list.set(i2, old);
 
         this.visualLists.set(listIndex, list);
+
+        // Pass information to SortingWindow
+        window.trade(listIndex);
+        window.cooldown();
     }
 
     protected void set(int listIndex, int index, int value) {
         while (window.isHalted());
 
-        window.set(listIndex, index, value);
+        // Set value in List
+        List<Integer> list = this.visualLists.get(listIndex);
+        list.set(index, value);
+        this.visualLists.set(listIndex, list);
+
+        // Pass information to SortingWindow
+        window.set(listIndex);
         window.cooldown();
 
         this.visualLists.get(listIndex).set(index, value);
@@ -93,6 +108,7 @@ public abstract class Algorithm {
     protected int get(int listIndex, int index) {
         while (window.isHalted());
 
+        // Pass information to SortingWindow
         window.get(listIndex, index);
         window.cooldown();
 
@@ -102,14 +118,16 @@ public abstract class Algorithm {
     protected int[] getArray(int listIndex) {
         while (window.isHalted());
 
-        window.cooldown();
-
+        // Create an array based on the target VisualList
         List<Integer> list = visualLists.get(listIndex);
         int[] array = new int[list.size()];
 
         for (int i = 0; i < list.size(); i++) {
             array[i] = list.get(i);
         }
+
+        // Pass information to SortingWindow
+        window.cooldown();
 
         return array;
     }
