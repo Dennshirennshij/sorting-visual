@@ -84,6 +84,5 @@ public class MainWindowController {
 
             algorithmPicker.getItems().add(item);
         }
-        System.out.println("a");
     }
 }
