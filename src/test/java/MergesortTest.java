@@ -1,11 +1,11 @@
 import github.dennshirennshij.nodedev74.sorting_visual.gui.view.sorting.SortingWindow;
 import github.dennshirennshij.nodedev74.sorting_visual.sorting.Algorithm;
 
-public class MergesortTesting extends Algorithm {
-    public MergesortTesting(SortingWindow window) {
+public class MergesortTest extends Algorithm {
+    public MergesortTest(SortingWindow window) {
         super(window);
     }
-    public MergesortTesting() {}
+    public MergesortTest() {}
     @Override
     public void start(int[] elements) {
         int listI = addVisualList(elements);
@@ -25,7 +25,8 @@ public class MergesortTesting extends Algorithm {
 
         // Copy data to temp arrays
         for (int i = 0; i < n1; ++i)
-            set(n1id, i, get(listI, l + 1));
+            set(n1id, i, get(listI, l + i));
+
         for (int j = 0; j < n2; ++j)
             set(n2id, j, get(listI, m + 1 + j));
 
@@ -60,6 +61,9 @@ public class MergesortTesting extends Algorithm {
             j++;
             k++;
         }
+
+        removeVisualList(n1id);
+        removeVisualList(n2id - 1);
     }
 
     // Main function that sorts arr[l..r] using
@@ -68,7 +72,7 @@ public class MergesortTesting extends Algorithm {
     {
         if (l < r) {
             // Find the middle point
-            int m = (l + r) / 2;
+            int m = l + (r - l) / 2;
 
             // Sort first and second halves
             sort(listI, l, m);
