@@ -17,8 +17,6 @@ public class SortingDisplay extends BarChart<String, Number> {
     // Contains references to the Lists in the Algorithm object
     private final ArrayList<List<Integer>> dataset;
 
-    private ArrayList<AtomicInteger> variables;
-
     public SortingDisplay() {
         super(new CategoryAxis(), new NumberAxis());
 
@@ -43,10 +41,11 @@ public class SortingDisplay extends BarChart<String, Number> {
         getData().set(listIndex, series);
     }
 
-    public void renderVariableChanges(int index) {
+    public void renderVariableChanges(String name, int index) {
+
         // Get the node of the first series
         Node node = getData().get(0).getNode();
-        VisualVariable text = new VisualVariable(String.valueOf(variables.get(index).intValue()), index);
+        VisualVariable text = new VisualVariable(name, index);
 
         Group parentGroup = (Group) node.getParent();
 
