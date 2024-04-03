@@ -6,7 +6,7 @@
  - Run your project, Have fun !
 
 ## Todos
- - Update to the BarChart used as a SortingDisplay
+ - ~Update to the BarChart used as a SortingDisplay~
  - Implement loading plugins
  - Implement the SortingWindowController
  - Fix Timer control
